@@ -2572,60 +2572,68 @@
       <div class="mh-icon aud"><i class="fas fa-shield-halved"></i></div>
       <div>
         <div class="mh-cat">Audit</div>
-        <div class="mh-ttl">Audit processus achats</div>
-        <div class="mh-ctx"><i class="fas fa-calendar"></i> 2024</div>
+        <div class="mh-ttl">Audit légal</div>
+        <!--div class="mh-ctx"><i class="fas fa-calendar"></i> 2024</div-->
       </div>
       <button class="m-close"><i class="fas fa-times"></i></button>
     </div>
     <div class="mb">
       <div class="mb-block">
         <h4><i class="fas fa-bullseye"></i>Objectif</h4>
-        <p>Évaluer le niveau de contrôle interne sur le cycle achats-fournisseurs et formuler des recommandations d'amélioration.</p>
+        <p>Évaluation des risques sur des entités fictives.</p>
       </div>
       <div class="mb-block">
         <h4><i class="fas fa-list-ul"></i>Réalisations</h4>
         <ul>
-          <li>Cartographie des risques selon référentiel COSO</li>
-          <li>Tests de conformité et d'efficacité</li>
+          <li>Elaboration du P&L, du bilan et de la balance générale</li>
+          <li>Revue analytique des états financiers</li>
           <li>12 recommandations hiérarchisées par criticité</li>
         </ul>
       </div>
       <div class="mb-block">
         <h4><i class="fas fa-wrench"></i>Outils</h4>
-        <div class="m-tags"><span>Audit interne</span><span>COSO</span><span>Matrice des risques</span></div>
+        <div class="m-tags"><span>Excel</span><span>Power BI</span><span>Power Query</span></div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="mo" id="mp-ctrl">
+<div class="mo" id="mp-treso">
   <div class="mc">
     <div class="mh">
       <div class="mh-stripe"></div>
       <div class="mh-icon ctrl"><i class="fas fa-gears"></i></div>
       <div>
         <div class="mh-cat">Contrôle</div>
-        <div class="mh-ttl">Automatisation Excel VBA</div>
-        <div class="mh-ctx"><i class="fas fa-calendar"></i> 2024</div>
+        <div class="mh-ttl">Gestion de la trésorerie</div>
+        <!--div class="mh-ctx"><i class="fas fa-calendar"></i></div-->
       </div>
       <button class="m-close"><i class="fas fa-times"></i></button>
     </div>
     <div class="mb">
       <div class="mb-block">
         <h4><i class="fas fa-bullseye"></i>Objectif</h4>
-        <p>Automatiser le traitement mensuel des données comptables pour générer des rapports standardisés en quelques secondes.</p>
+        <p>Suivre les différents flux de trésorerie et les ratios d'analyse financière. Et proposer des hypothèses de scénarios pour les optimiser.</p>
       </div>
       <div class="mb-block">
         <h4><i class="fas fa-list-ul"></i>Réalisations</h4>
         <ul>
-          <li>Macro VBA de traitement et consolidation</li>
-          <li>Génération automatique de rapports PDF</li>
-          <li>Économie de 8 heures par mois</li>
+          <li>Elaboration du P&L et du bilan</li>
+          <li>Suivi des flux de trésorerie</li>
+          <li>Calcul des ratios pour l'analyse financière (autonomie financière, solvabilité, rentabilité, ...)</li>
+        </ul>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fa-solid fa-folder-open"></i>Documentation et médias</h4>
+        <ul>
+          <li><i class="fas fa-file"></i> <a href="docs/projets/Kitchen Plus vTVA 26.pdf" target="_blank">Présentation de l'étude de cas</a></li>
+          <li><i class="fas fa-file"></i> <a href="https://1drv.ms/x/c/ff3f4235c3d8dddd/IQBnUrl3FsYHQam1P33cOmDLARvuYa4-DzRJlaqTVmWF6ew?e=jpIblk" target="_blank">Kitchen Plus hypothèse standard</a></li>
+          <li><i class="fas fa-file"></i> <a href="https://1drv.ms/x/c/ff3f4235c3d8dddd/IQCSJJmIO_WNTIBmmRXQAlCDAfEmTsjfMr2jhKTn4F4bbnY?e=3Qtlqy" target="_blank">Kitchen Plus recommandations</a></li>
         </ul>
       </div>
       <div class="mb-block">
         <h4><i class="fas fa-wrench"></i>Outils</h4>
-        <div class="m-tags"><span>Excel VBA</span><span>Power Query</span></div>
+        <div class="m-tags"><span>Excel</span></div>
       </div>
     </div>
   </div>
@@ -3149,8 +3157,8 @@ document.addEventListener('keydown', event => {
       iconClass: 'aud',
       icon: 'fas fa-shield-halved',
       badge: 'Audit',
-      title: 'Audit processus achats',
-      desc: "Cartographie des risques et recommandations pour améliorer le contrôle interne sur le cycle achats-fournisseurs.",
+      title: 'Audit légal',
+      desc: "Évaluation des risques sur des entités fictives et formulation de recommandations.",
       result: '12 recommandations formulées',
       tags: ['Audit interne', 'Risques', 'COSO']
     },
@@ -3167,14 +3175,14 @@ document.addEventListener('keydown', event => {
     },
     {
       cat: 'ctrl',
-      modal: 'mp-ctrl',
+      modal: 'mp-treso',
       iconClass: 'ctrl',
       icon: 'fas fa-gears',
       badge: 'Contrôle',
-      title: 'Automatisation Excel VBA',
-      desc: "Macro pour le traitement automatisé des données comptables et génération de rapports mensuels standardisés.",
-      result: '8h économisées/mois',
-      tags: ['Excel VBA', 'Power Query']
+      title: 'Gestion de la trésorerie',
+      desc: "Suivre les différents flux de trésorerie et les ratios d'analyse financière.",
+      result: 'scénarios prévisionnels de trésorerie établis',
+      tags: ['Excel' ]
     }
   ];
 
