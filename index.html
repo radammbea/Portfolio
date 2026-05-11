@@ -1,17 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+<html lang="fr" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio · Adam Mbea</title>
   <meta name="description" content="Portfolio Adam Mbea — Auditeur junior, Finance & Audit, TBS Education">
-
-  <script>
-    (function(){
-      const t = localStorage.getItem('theme');
-      if(t) document.documentElement.dataset.theme = t;
-    })();
-  </script>
 
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,251 +14,132 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons-font@latest/font/simple-icons.min.css">
 
   <style>
-    /* ── VARIABLES ── */
-    :root {
-      --bg: #080c14;
-      --bg-2: #0d1220;
-      --card: #111827;
-      --card-2: #1a2236;
-      --border: rgba(255,255,255,0.07);
-      --text: #f0f4ff;
-      --muted: #8899b4;
-      --muted-2: #5a6a85;
-      --p1: #3b82f6;
-      --p2: #8b5cf6;
-      --r: 12px;
-      --r-sm: 8px;
-      --gap: 24px;
-      --sh: 0 4px 20px rgba(0,0,0,0.25);
-      --sh2: 0 16px 48px rgba(0,0,0,0.4);
-      --transition: all 0.3s cubic-bezier(0.25,0.8,0.25,1);
-      --ease: cubic-bezier(0.4,0,0.2,1);
-      --ease-out: cubic-bezier(0.19,1,0.22,1);
-      --spring: cubic-bezier(0.34,1.56,0.64,1);
+:root {
+  --bg: #f8fafc;
+  --bg-2: #f1f5f9;
+  --card: #ffffff;
+  --card-2: #f8fafc;
+  --border: rgba(0,0,0,0.07);
+  --text: #111827;
+  --muted: #64748b;
+  --muted-2: #94a3b8;
+  --p1: #3b82f6;
+  --p2: #8b5cf6;
+  --r: 12px;
+  --r-sm: 8px;
+  --sh: 0 4px 20px rgba(0,0,0,0.06);
+  --sh2: 0 16px 48px rgba(0,0,0,0.1);
+  --transition: all 0.3s cubic-bezier(0.25,0.8,0.25,1);
+  --ease: cubic-bezier(0.4,0,0.2,1);
+  --ease-out: cubic-bezier(0.19,1,0.22,1);
+  --spring: cubic-bezier(0.34,1.56,0.64,1);
+}
+
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    :root[data-theme="light"] {
-      --bg: #f8fafc;
-      --bg-2: #f1f5f9;
-      --card: #ffffff;
-      --card-2: #f8fafc;
-      --border: rgba(0,0,0,0.07);
-      --text: #111827;
-      --muted: #64748b;
-      --muted-2: #94a3b8;
-      --sh: 0 4px 20px rgba(0,0,0,0.06);
-      --sh2: 0 16px 48px rgba(0,0,0,0.1);
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-    a { color: inherit; text-decoration: none; }
-    ul { list-style: none; }
-    img { display: block; max-width: 100%; }
-    button { font-family: inherit; cursor: pointer; border: none; background: none; }
-    p { text-align: justify; }
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg-2); }
-    ::-webkit-scrollbar-thumb { background: var(--p1); border-radius: 4px; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    /* ── BACKGROUND CANVAS ── */
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    p {
+      text-align: justify;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-2);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--p1);
+      border-radius: 4px;
+    }
+
     #bg-canvas {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none; z-index: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    main { position: relative; z-index: 1; }
+    main {
+      position: relative;
+      z-index: 1;
+    }
 
-    /* ── THEME BTN ── */
     .theme-btn {
-      position: fixed; top: 20px; right: 20px;
-      width: 44px; height: 44px; border-radius: 50%;
-      background: var(--card); border: 1px solid var(--border);
-      display: grid; place-items: center; z-index: 100;
-      box-shadow: var(--sh); color: var(--text);
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      z-index: 100;
+      box-shadow: var(--sh);
+      color: var(--text);
       transition: var(--transition);
     }
-    .theme-btn:hover { background: var(--card-2); }
 
-    /* ── TOAST ── */
-    #toast {
-      position: fixed; bottom: 20px; right: 20px;
-      background: var(--p1); color: white;
-      padding: 12px 20px; border-radius: var(--r-sm);
-      box-shadow: var(--sh); transform: translateY(150%);
-      opacity: 0; transition: var(--transition); z-index: 1000;
-    }
-    #toast.show { transform: translateY(0); opacity: 1; }
-
-    /* ── LAYOUT ── */
-    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px 120px; }
-
-    .panel {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--r); padding: 32px; box-shadow: var(--sh);
+    .theme-btn:hover {
+      background: var(--card-2);
     }
 
-    .section-title {
-      font-size: 1.5rem; font-weight: 700; margin-bottom: 16px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .title-line {
-      width: 40px; height: 3px; background: var(--p1);
-      margin-bottom: 32px; border-radius: 3px;
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px 120px;
     }
 
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 20px; border-radius: var(--r-sm);
-      font-weight: 600; transition: var(--transition);
-      border: 1px solid transparent;
+    .s {
+      padding: 100px 0;
     }
-    .btn-primary { background: var(--p1); color: white; }
-    .btn-primary:hover { background: #2563eb; transform: translateY(-2px); }
-    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
-    .btn-outline:hover { background: var(--card-2); transform: translateY(-2px); }
 
-    /* ── REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
-    .reveal.show { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-
-    /* ── NAV ── */
-    .nav {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-      padding: 22px 72px; display: flex; align-items: center;
-      justify-content: space-between; transition: all .35s var(--ease);
-    }
-    .nav.scrolled {
-      background: rgba(8,12,20,0.92); backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border); padding: 14px 72px;
-      box-shadow: var(--sh);
-    }
-    :root[data-theme="light"] .nav.scrolled { background: rgba(248,250,252,0.92); }
-    .nav-logo { display: flex; align-items: center; gap: 10px; }
-    .nav-logo-mark {
-      width: 36px; height: 36px;
-      background: linear-gradient(135deg, var(--p1), var(--p2));
-      border-radius: 8px; display: flex; align-items: center;
-      justify-content: center; color: white;
-      font-size: 0.9rem; font-weight: 700;
-    }
-    .nav-logo-text { font-size: 1rem; font-weight: 600; color: var(--text); }
-    .nav-links { display: flex; gap: 32px; }
-    .nav-links a {
-      color: var(--muted); font-size: .82rem; font-weight: 500;
-      letter-spacing: .5px; transition: color .25s; position: relative; padding-bottom: 2px;
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: -2px; left: 0;
-      width: 0; height: 1px; background: var(--p1); transition: width .3s var(--ease);
-    }
-    .nav-links a:hover { color: var(--text); }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-cta {
-      background: var(--p1) !important; color: white !important;
-      padding: 8px 20px !important; border-radius: var(--r-sm) !important;
-      font-weight: 600 !important;
-    }
-    .nav-cta::after { display: none !important; }
-    .nav-cta:hover { background: #2563eb !important; }
-
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh; display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center; padding: 120px 48px 100px; position: relative; overflow: hidden;
-    }
-    .hero-bg { position: absolute; inset: 0; pointer-events: none; }
-    .hero-bg-grid {
-      position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(59,130,246,.04) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(59,130,246,.04) 1px, transparent 1px);
-      background-size: 64px 64px;
-    }
-    .hero-bg-glow {
-      position: absolute; width: 800px; height: 800px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(59,130,246,.1) 0%, transparent 65%);
-      top: 50%; left: 50%; transform: translate(-50%, -52%);
-    }
-    .hero-content { position: relative; z-index: 1; max-width: 860px; }
-
-    .avail-badge {
-      display: inline-flex; align-items: center; gap: 10px;
-      border: 1px solid rgba(59,130,246,.25); background: rgba(59,130,246,.08);
-      padding: 8px 20px; border-radius: 999px;
-      font-size: .72rem; font-weight: 600; color: #93c5fd;
-      letter-spacing: .8px; text-transform: uppercase; margin-bottom: 44px;
-      animation: fu .8s ease both;
-    }
-    .dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; animation: blink-dot 2.5s ease infinite; }
-    @keyframes blink-dot { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(16,185,129,.5)} 60%{opacity:.5;box-shadow:0 0 0 5px rgba(16,185,129,0)} }
-
-    .hero-title {
-      font-size: clamp(3rem, 7.5vw, 6rem); line-height: .95;
-      letter-spacing: -2px; color: var(--text); margin-bottom: 32px;
-      animation: fu .8s .15s ease both; opacity: 0; font-weight: 800;
-    }
-    .hero-title .line1 {
-      display: block; font-size: .38em; font-weight: 500;
-      color: var(--muted); letter-spacing: 4px; text-transform: uppercase;
-      margin-bottom: 12px; font-family: 'Poppins', sans-serif;
-    }
-    .hero-title .line2 { display: block; }
-    .grad-text {
-      background: linear-gradient(90deg, var(--p1), var(--p2));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .hero-sub {
-      font-size: 1rem; color: var(--muted); line-height: 1.85;
-      max-width: 520px; margin: 0 auto 52px; font-weight: 300;
-      animation: fu .8s .3s ease both; opacity: 0;
-    }
-    .hero-sub strong { color: var(--text); font-weight: 500; }
-    .hero-actions {
-      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
-      animation: fu .8s .45s ease both; opacity: 0;
-    }
-    .hero-scroll {
-      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      color: var(--muted-2); font-size: .62rem; letter-spacing: 2.5px; text-transform: uppercase;
-      animation: fu 1s .9s ease both; opacity: 0;
-    }
-    .hero-scroll-line { width: 1px; height: 44px; background: linear-gradient(180deg, var(--p1), transparent); animation: sa 2.2s ease infinite; }
-    @keyframes sa { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
-    @keyframes fu { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-
-    .hero-tag {display: inline-flex;align-items: center;gap: 6px;background: rgba(8,145,178,0.07);border: 1px solid rgba(8,145,178,0.2);padding: 7px 16px;border-radius: 50px;font-size: 0.78rem;color: #0891b2;font-weight: 600;backdrop-filter: blur(8px);}
-
-    /* ── STATS BAND ── */
-    .stats-band {
-      background: var(--card-2); border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      display: grid; grid-template-columns: repeat(4, 1fr);
-    }
-    .stat-item {
-      padding: 40px 28px; text-align: center;
-      border-right: 1px solid var(--border); transition: background .25s;
-      position: relative;
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-item:hover { background: var(--card); }
-    .stat-item::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0;
-      height: 2px; background: linear-gradient(90deg, transparent, var(--p1), transparent);
-      opacity: 0; transition: opacity .3s;
-    }
-    .stat-item:hover::before { opacity: 1; }
-    .stat-num { font-size: 2.2rem; font-weight: 700; color: var(--text); line-height: 1; }
-    .stat-num span { color: var(--p1); }
-    .stat-label { color: var(--muted); font-size: .72rem; margin-top: 8px; letter-spacing: .6px; text-transform: uppercase; }
-
-    /* ── SECTIONS ── */
-    .s { padding: 100px 0; }
     .s-eyebrow {
       width: 100px;
       height: 3px;
@@ -273,181 +147,800 @@
       margin-bottom: 10px;
       border-radius: 3px;
     }
-    .s-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--p1); }
-    .s-title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; line-height: 1.1; margin-bottom: 14px; }
-    .s-title em { color: var(--p1); font-style: normal; }
-    .s-sub { color: var(--muted); font-size: .95rem; line-height: 1.85; max-width: 620px; font-weight: 300; }
 
-    /* ── ABOUT ── */
-    #about { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    #about .inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-    .about-body p { color: var(--muted); line-height: 1.9; font-size: .95rem; font-weight: 300; margin-bottom: 20px; }
-    .about-body p strong { color: var(--text); font-weight: 600; }
-    .about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
-    .tag {
-      background: var(--card-2); border: 1px solid var(--border);
-      color: var(--muted); padding: 6px 16px;
-      border-radius: 999px; font-size: .75rem; font-weight: 500; transition: all .2s;
+    .s-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 14px;
     }
-    .tag:hover { background: rgba(59,130,246,.12); border-color: rgba(59,130,246,.3); color: var(--text); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .acard {
-      background: var(--card-2); border: 1px solid var(--border);
-      border-radius: var(--r); padding: 24px;
-      transition: all .3s var(--spring); position: relative; overflow: hidden;
+
+    .s-title em {
+      color: var(--p1);
+      font-style: normal;
     }
-    .acard::after {
-      content: ''; position: absolute; top: 0; left: 0; right: 0;
-      height: 2px; background: linear-gradient(90deg, var(--p1), var(--p2));
-      transform: scaleX(0); transform-origin: left; transition: transform .3s var(--ease);
+
+    .s-sub {
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.85;
+      max-width: 620px;
+      font-weight: 300;
     }
-    .acard:hover { transform: translateY(-5px); box-shadow: var(--sh2); border-color: rgba(59,130,246,.2); }
-    .acard:hover::after { transform: scaleX(1); }
-    .acard-ico {
-      width: 42px; height: 42px; border-radius: 10px;
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: var(--r-sm);
+      font-weight: 600;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--p1);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      background: var(--card-2);
+      transform: translateY(-2px);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 22px 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all .35s var(--ease);
+    }
+
+    .nav.scrolled {
+      background: rgba(248,250,252,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 72px;
+      box-shadow: var(--sh);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo-mark {
+      width: 36px;
+      height: 36px;
       background: linear-gradient(135deg, var(--p1), var(--p2));
-      color: white; display: flex; align-items: center; justify-content: center;
-      font-size: .9rem; margin-bottom: 14px; transition: transform .3s var(--spring);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: .9rem;
+      font-weight: 700;
     }
-    .acard:hover .acard-ico { transform: rotate(-6deg) scale(1.1); }
-    .acard h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 7px; }
-    .acard p { font-size: .8rem; color: var(--muted); line-height: 1.65; font-weight: 300; text-align: left; }
 
-    /* ── TIMELINE ── */
-    #experience { border-bottom: 1px solid var(--border); }
-    .exp-wrap { max-width: 840px; margin: 0 auto; }
-    .tl { position: relative; padding-left: 36px; }
-    .tl::before {
-      content: ''; position: absolute; left: 0; top: 10px; bottom: 0;
-      width: 1px; background: linear-gradient(180deg, var(--p1), var(--border) 85%, transparent);
+    .nav-logo-text {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
     }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .5px;
+      transition: color .25s;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      background: var(--p1) !important;
+      color: white !important;
+      padding: 8px 20px !important;
+      border-radius: var(--r-sm) !important;
+      font-weight: 600 !important;
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 48px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(59,130,246,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    .hero-bg-glow {
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,.1) 0%, transparent 65%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -52%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+    }
+
+    .avail-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(59,130,246,.25);
+      background: rgba(59,130,246,.08);
+      padding: 8px 20px;
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 600;
+      color: #93c5fd;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      animation: fu .8s ease both;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: blink-dot 2.5s ease infinite;
+    }
+
+    @keyframes blink-dot {
+      0%,100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(16,185,129,.5);
+      }
+      60% {
+        opacity: .5;
+        box-shadow: 0 0 0 5px rgba(16,185,129,0);
+      }
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(8,145,178,0.07);
+      border: 1px solid rgba(8,145,178,0.2);
+      padding: 7px 16px;
+      border-radius: 50px;
+      font-size: .78rem;
+      color: #0891b2;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+      margin-bottom: 36px;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 7.5vw, 6rem);
+      line-height: .95;
+      letter-spacing: -2px;
+      color: var(--text);
+      margin-bottom: 32px;
+      animation: fu .8s .15s ease both;
+      opacity: 0;
+      font-weight: 800;
+    }
+
+    .hero-title .line1 {
+      display: block;
+      font-size: .38em;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .grad-text {
+      background: linear-gradient(90deg, var(--p1), var(--p2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 520px;
+      margin: 0 auto 52px;
+      font-weight: 300;
+      animation: fu .8s .3s ease both;
+      opacity: 0;
+    }
+
+    .hero-sub strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fu .8s .45s ease both;
+      opacity: 0;
+    }
+
+    @keyframes fu {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* STATS */
+    .stats-band {
+      background: var(--card-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat-item {
+      padding: 40px 28px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-num {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .stat-num span {
+      color: var(--p1);
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: .72rem;
+      margin-top: 8px;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+    }
+
+    /* ABOUT */
+    #about {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    #about .inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-body p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: .95rem;
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+
+    .about-body p strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .acard {
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 24px;
+      transition: all .3s var(--spring);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .acard:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--sh2);
+      border-color: rgba(59,130,246,.2);
+    }
+
+    .acard-ico {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--p1), var(--p2));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .9rem;
+      margin-bottom: 14px;
+    }
+
+    .acard h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 7px;
+    }
+
+    .acard p {
+      font-size: .8rem;
+      color: var(--muted);
+      line-height: 1.65;
+      font-weight: 300;
+      text-align: left;
+    }
+
+    /* EXPERIENCE */
+    #experience {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .exp-wrap {
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    .tl {
+      position: relative;
+      padding-left: 36px;
+    }
+
+    .tl::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, var(--p1), var(--border) 85%, transparent);
+    }
+
     .tl-item {
-      position: relative; margin-bottom: 28px;
-      opacity: 0; transform: translateX(-14px);
+      position: relative;
+      margin-bottom: 28px;
+      opacity: 0;
+      transform: translateX(-14px);
       transition: opacity .5s var(--ease), transform .5s var(--ease);
     }
-    .tl-item.visible { opacity: 1; transform: none; }
+
+    .tl-item.visible {
+      opacity: 1;
+      transform: none;
+    }
+
     .tl-dot {
-      position: absolute; left: -43px; top: 26px;
-      width: 14px; height: 14px; border-radius: 50%;
-      background: var(--bg); border: 2px solid var(--p1);
+      position: absolute;
+      left: -43px;
+      top: 26px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--p1);
       box-shadow: 0 0 0 3px rgba(59,130,246,.15);
     }
+
     .tl-yr {
-      position: absolute; left: -152px; top: 23px; width: 96px;
-      text-align: right; font-size: .85rem; font-style: italic;
-      color: var(--p1); font-weight: 600;
+      position: absolute;
+      left: -152px;
+      top: 23px;
+      width: 96px;
+      text-align: right;
+      font-size: .85rem;
+      font-style: italic;
+      color: var(--p1);
+      font-weight: 600;
     }
+
     .tl-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--r); padding: 26px 30px;
-      transition: all .3s var(--ease); box-shadow: var(--sh);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 26px 30px;
+      transition: all .3s var(--ease);
+      box-shadow: var(--sh);
     }
-    .tl-card:hover { border-color: rgba(59,130,246,.25); box-shadow: var(--sh2); transform: translateY(-3px); }
-    .tl-head { display: flex; align-items: flex-start; gap: 16px; }
+
+    .tl-card:hover {
+      border-color: rgba(59,130,246,.25);
+      box-shadow: var(--sh2);
+      transform: translateY(-3px);
+    }
+
+    .tl-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
     .tl-logo {
-      width: 48px; height: 48px; border-radius: 10px;
-      object-fit: contain; background: var(--card-2);
-      padding: 5px; border: 1px solid var(--border); flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      object-fit: contain;
+      background: var(--card-2);
+      padding: 5px;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
     }
-    .tl-co { font-weight: 700; font-size: .95rem; color: var(--text); }
-    .tl-role { font-size: .78rem; color: var(--muted); margin-top: 2px; }
-    .tl-loc { font-size: .72rem; color: var(--muted-2); display: flex; align-items: center; gap: 4px; margin-top: 4px; }
+
+    .tl-co {
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--text);
+    }
+
+    .tl-role {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .tl-loc {
+      font-size: .72rem;
+      color: var(--muted-2);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
     .tl-badge {
       margin-left: auto;
-      background: rgba(59,130,246,.1); border: 1px solid rgba(59,130,246,.2);
-      color: var(--p1); font-size: .68rem; font-weight: 700;
-      padding: 4px 13px; border-radius: 999px; white-space: nowrap;
-      flex-shrink: 0; letter-spacing: .4px;
+      background: rgba(59,130,246,.1);
+      border: 1px solid rgba(59,130,246,.2);
+      color: var(--p1);
+      font-size: .68rem;
+      font-weight: 700;
+      padding: 4px 13px;
+      border-radius: 999px;
+      white-space: nowrap;
     }
+
     .tl-btn {
-      margin-top: 16px; display: inline-flex; align-items: center; gap: 7px;
-      font-size: .74rem; font-weight: 600; color: var(--text);
-      background: none; border: 1px solid var(--border);
-      border-radius: var(--r-sm); padding: 8px 16px; cursor: pointer;
-      letter-spacing: .3px; transition: all .2s;
+      margin-top: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: .74rem;
+      font-weight: 600;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: all .2s;
     }
-    .tl-btn:hover { background: var(--p1); color: white; border-color: var(--p1); }
 
-    /* ── PROJECTS ── */
-    #projects { border-bottom: 1px solid var(--border); }
-    .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 44px; }
+    .tl-btn:hover {
+      background: var(--p1);
+      color: white;
+      border-color: var(--p1);
+    }
+
+    /* PROJECTS */
+    #projects {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 44px;
+    }
+
     .fbtn {
-      padding: 8px 20px; border-radius: 999px; border: 1px solid var(--border);
-      background: transparent; color: var(--muted); font-size: .74rem;
-      font-weight: 600; letter-spacing: .4px; cursor: pointer;
-      transition: all .25s; font-family: 'Poppins', sans-serif; text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: .74rem;
+      font-weight: 600;
+      letter-spacing: .4px;
+      cursor: pointer;
+      transition: all .25s;
+      text-transform: uppercase;
     }
-    .fbtn:hover { border-color: var(--p1); color: var(--text); }
-    .fbtn.active { background: var(--p1); color: white; border-color: var(--p1); }
-    .proj-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+
+    .fbtn:hover {
+      border-color: var(--p1);
+      color: var(--text);
+    }
+
+    .fbtn.active {
+      background: var(--p1);
+      color: white;
+      border-color: var(--p1);
+    }
+
     .proj-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--r); padding: 28px; cursor: pointer;
-      transition: all .3s var(--spring); position: relative; overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 28px;
+      cursor: pointer;
+      transition: all .3s var(--spring);
+      position: relative;
+      overflow: hidden;
     }
+
     .proj-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
       background: linear-gradient(90deg, var(--p1), var(--p2));
-      transform: scaleX(0); transform-origin: left; transition: transform .3s var(--ease);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s var(--ease);
     }
-    .proj-card:hover { transform: translateY(-6px); box-shadow: var(--sh2); border-color: rgba(59,130,246,.2); }
-    .proj-card:hover::before { transform: scaleX(1); }
-    .pc-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+
+    .proj-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--sh2);
+      border-color: rgba(59,130,246,.2);
+    }
+
+    .proj-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .pc-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
     .pc-ico {
-      width: 46px; height: 46px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; transition: transform .3s var(--spring);
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: transform .3s var(--spring);
     }
-    .proj-card:hover .pc-ico { transform: rotate(-8deg) scale(1.12); }
-    .pc-ico.rep { background: rgba(59,130,246,.1); color: var(--p1); }
-    .pc-ico.aud { background: rgba(239,68,68,.1); color: #ef4444; }
-    .pc-ico.ctrl { background: rgba(139,92,246,.1); color: var(--p2); }
-    .pc-ico.mod { background: rgba(16,185,129,.1); color: #10b981; }
+
+    .proj-card:hover .pc-ico {
+      transform: rotate(-8deg) scale(1.12);
+    }
+
+    .pc-ico.rep {
+      background: rgba(59,130,246,.1);
+      color: var(--p1);
+    }
+
+    .pc-ico.aud {
+      background: rgba(239,68,68,.1);
+      color: #ef4444;
+    }
+
+    .pc-ico.ctrl {
+      background: rgba(139,92,246,.1);
+      color: var(--p2);
+    }
+
+    .pc-ico.auto,
+    .pc-ico.mod {
+      background: rgba(16,185,129,.1);
+      color: #10b981;
+    }
+
     .pc-badge {
-      font-size: .63rem; font-weight: 700; letter-spacing: .8px;
-      text-transform: uppercase; padding: 4px 13px;
-      border-radius: 999px; border: 1px solid;
+      font-size: .63rem;
+      font-weight: 700;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      padding: 4px 13px;
+      border-radius: 999px;
+      border: 1px solid;
     }
-    .pc-badge.rep { background: rgba(59,130,246,.1); color: var(--p1); border-color: rgba(59,130,246,.25); }
-    .pc-badge.aud { background: rgba(239,68,68,.08); color: #ef4444; border-color: rgba(239,68,68,.2); }
-    .pc-badge.ctrl { background: rgba(139,92,246,.1); color: var(--p2); border-color: rgba(139,92,246,.25); }
-    .pc-badge.mod { background: rgba(16,185,129,.1); color: #10b981; border-color: rgba(16,185,129,.2); }
-    .pc-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 9px; line-height: 1.25; }
-    .pc-desc { font-size: .82rem; color: var(--muted); line-height: 1.7; font-weight: 300; margin-bottom: 14px; }
+
+    .pc-badge.rep {
+      background: rgba(59,130,246,.1);
+      color: var(--p1);
+      border-color: rgba(59,130,246,.25);
+    }
+
+    .pc-badge.aud {
+      background: rgba(239,68,68,.08);
+      color: #ef4444;
+      border-color: rgba(239,68,68,.2);
+    }
+
+    .pc-badge.ctrl {
+      background: rgba(139,92,246,.1);
+      color: var(--p2);
+      border-color: rgba(139,92,246,.25);
+    }
+
+    .pc-badge.auto,
+    .pc-badge.mod {
+      background: rgba(16,185,129,.1);
+      color: #10b981;
+      border-color: rgba(16,185,129,.2);
+    }
+
+    .pc-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 9px;
+      line-height: 1.25;
+    }
+
+    .pc-desc {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 14px;
+    }
+
     .pc-result {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-size: .74rem; color: #34d399;
-      background: rgba(16,185,129,.08); border: 1px solid rgba(16,185,129,.2);
-      padding: 5px 12px; border-radius: 6px; margin-bottom: 18px; font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: .74rem;
+      color: #34d399;
+      background: rgba(16,185,129,.08);
+      border: 1px solid rgba(16,185,129,.2);
+      padding: 5px 12px;
+      border-radius: 6px;
+      margin-bottom: 18px;
+      font-weight: 600;
     }
+
     .pc-foot {
-      display: flex; align-items: center; justify-content: space-between;
-      padding-top: 16px; border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
     }
-    .pc-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+    .pc-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
     .pc-tags span {
-      font-size: .69rem; color: var(--muted-2); background: var(--card-2);
-      border: 1px solid var(--border); padding: 3px 9px; border-radius: 4px;
+      font-size: .69rem;
+      color: var(--muted-2);
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      padding: 3px 9px;
+      border-radius: 4px;
     }
+
     .pc-arr {
-      width: 32px; height: 32px; border-radius: var(--r-sm);
-      border: 1px solid var(--border); background: transparent;
-      color: var(--muted); display: flex; align-items: center;
-      justify-content: center; cursor: pointer; flex-shrink: 0;
-      transition: all .2s; font-size: .78rem;
+      width: 32px;
+      height: 32px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all .2s;
+      font-size: .78rem;
     }
-    .pc-arr:hover { background: var(--p1); color: white; border-color: var(--p1); }
-    .proj-card.hidden { display: none; }
 
-    /* ── PROJECTS SLIDER ── */
-
-    .slider-wrapper { position: relative; margin: auto; overflow: hidden;
+    .pc-arr:hover {
+      background: var(--p1);
+      color: white;
+      border-color: var(--p1);
     }
-    .slider { display: flex; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; }
 
-    .slider::-webkit-scrollbar {
-      display: none;
+    .slider-wrapper {
+      position: relative;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    .slider {
+      display: flex;
+      overflow: hidden;
+      scroll-behavior: smooth;
     }
 
     .slide-page {
@@ -464,13 +957,27 @@
       top: 50%;
       transform: translateY(-50%);
       z-index: 20;
-      width: 50px;
-      height: 50px;
-      border: none;
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--border);
       border-radius: 50%;
-      background: rgba(180, 180, 180, 0.5);
-      font-size: 28px;
+      background: var(--card);
+      color: var(--text);
+      font-size: 24px;
       cursor: pointer;
+      box-shadow: var(--sh);
+      transition: var(--transition);
+    }
+
+    .slider-btn:hover {
+      background: var(--p1);
+      color: white;
+      border-color: var(--p1);
+    }
+
+    .slider-btn:disabled {
+      opacity: .35;
+      cursor: not-allowed;
     }
 
     .slider-btn.left {
@@ -481,133 +988,355 @@
       right: 10px;
     }
 
-    /* classe pour cacher */
-    .hidden {
-      display: none;
+    .projects-pagination {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 22px;
     }
 
-    /* ── SKILLS BENTO ── */
-    #skills { border-bottom: 1px solid var(--border); }
-    .bento { display: grid; grid-template-columns: repeat(12,1fr); gap: 14px; margin-top: 52px; }
+    .projects-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--border);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .projects-dot.active {
+      background: var(--p1);
+      transform: scale(1.25);
+    }
+
+    .projects-empty {
+      color: var(--muted);
+      text-align: center;
+      margin-top: 24px;
+      font-size: .9rem;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* SKILLS */
+    #skills {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(12,1fr);
+      gap: 14px;
+      margin-top: 52px;
+    }
+
     .bc {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--r); padding: 28px;
-      opacity: 0; transform: translateY(18px);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 28px;
+      opacity: 0;
+      transform: translateY(18px);
       transition: opacity .55s var(--ease), transform .55s var(--ease), border-color .25s, box-shadow .25s;
     }
-    .bc.visible { opacity: 1; transform: none; }
-    .bc:hover { border-color: rgba(59,130,246,.25); box-shadow: var(--sh2); }
-    .bc-finance { grid-column: span 7; grid-row: span 2; }
-    .bc-tools { grid-column: span 5; }
-    .bc-soft { grid-column: span 5; }
-    .bc-lang { grid-column: span 12; }
-    .bc-head { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
+
+    .bc.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .bc-finance {
+      grid-column: span 7;
+      grid-row: span 2;
+    }
+
+    .bc-tools {
+      grid-column: span 5;
+    }
+
+    .bc-soft {
+      grid-column: span 5;
+    }
+
+    .bc-lang {
+      grid-column: span 12;
+    }
+
+    .bc-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
     .bc-ico {
-      width: 36px; height: 36px; border-radius: 9px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: .82rem; flex-shrink: 0; transition: transform .3s var(--spring);
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .82rem;
+      flex-shrink: 0;
     }
-    .bc:hover .bc-ico { transform: rotate(-7deg) scale(1.1); }
-    .bc-ico.n { background: linear-gradient(135deg, var(--p1), var(--p2)); color: white; }
-    .bc-ico.g { background: rgba(59,130,246,.15); color: var(--p1); }
-    .bc-ico.b { background: rgba(139,92,246,.1); color: var(--p2); }
-    .bc-ttl { font-size: .88rem; font-weight: 700; color: var(--text); }
-    .fin-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .bc-ico.n {
+      background: linear-gradient(135deg, var(--p1), var(--p2));
+      color: white;
+    }
+
+    .bc-ico.g {
+      background: rgba(59,130,246,.15);
+      color: var(--p1);
+    }
+
+    .bc-ico.b {
+      background: rgba(139,92,246,.1);
+      color: var(--p2);
+    }
+
+    .bc-ttl {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .fin-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
     .fin-row {
-      display: flex; align-items: center; gap: 13px; padding: 11px 15px;
-      background: var(--card-2); border: 1px solid var(--border);
-      border-radius: 9px; transition: all .2s;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 11px 15px;
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      border-radius: 9px;
     }
-    .fin-row:hover { border-color: rgba(59,130,246,.25); background: rgba(59,130,246,.05); transform: translateX(4px); }
+
     .fin-ico {
-      width: 32px; height: 32px; border-radius: 7px;
-      background: var(--bg-2); color: var(--muted);
-      display: flex; align-items: center; justify-content: center;
-      font-size: .72rem; flex-shrink: 0; transition: all .2s;
+      width: 32px;
+      height: 32px;
+      border-radius: 7px;
+      background: var(--bg-2);
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .72rem;
+      flex-shrink: 0;
     }
-    .fin-row:hover .fin-ico { background: var(--p1); color: white; }
-    .fin-nm { font-size: .8rem; color: var(--text); font-weight: 400; }
-    .tools-wrap { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    .fin-nm {
+      font-size: .8rem;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .tools-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
     .tpill {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 7px 13px; border-radius: 6px;
-      background: var(--card-2); border: 1px solid var(--border);
-      font-size: .74rem; color: var(--muted); transition: all .2s; cursor: default;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 13px;
+      border-radius: 6px;
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      font-size: .74rem;
+      color: var(--muted);
     }
-    .tpill i { font-size: .66rem; color: var(--p1); }
-    .tpill:hover { background: var(--p1); border-color: var(--p1); color: white; }
-    .tpill:hover i { color: white; }
-    .sk-soft-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 7px; }
+
+    .tpill i {
+      font-size: .66rem;
+      color: var(--p1);
+    }
+
+    .sk-soft-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 7px;
+    }
+
     .srow {
-      display: flex; align-items: center; gap: 9px; padding: 10px 12px;
-      background: var(--card-2); border: 1px solid var(--border);
-      border-radius: 8px; font-size: .78rem; color: var(--muted);
-      transition: all .2s; cursor: default;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 12px;
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: .78rem;
+      color: var(--muted);
     }
-    .srow i { font-size: .72rem; color: var(--p1); width: 14px; text-align: center; flex-shrink: 0; }
-    .srow:hover { background: var(--card); border-color: var(--border); transform: translateY(-2px); color: var(--text); }
-    .lang-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+
+    .srow i {
+      font-size: .72rem;
+      color: var(--p1);
+      width: 14px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 12px;
+    }
+
     .ltile {
-      display: flex; align-items: center; gap: 16px; padding: 16px 20px;
-      background: var(--card-2); border: 1px solid var(--border);
-      border-radius: var(--r); transition: all .25s var(--spring); cursor: default;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
     }
-    .ltile:hover { border-color: rgba(59,130,246,.3); transform: translateY(-3px); }
-    .lflag { font-size: 1.9rem; line-height: 1; }
-    .lname { font-size: .88rem; font-weight: 600; color: var(--text); }
-    .llvl { font-size: .72rem; color: var(--muted); margin-top: 2px; }
 
-    /* ── EDUCATION ── */
-    #education { border-bottom: 1px solid var(--border); }
+    .lflag {
+      font-size: 1.9rem;
+      line-height: 1;
+    }
+
+    .lname {
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .llvl {
+      font-size: .72rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* EDUCATION */
+    #education {
+      border-bottom: 1px solid var(--border);
+    }
+
     .edu-row {
-      display: flex; justify-content: center; align-items: flex-start;
-      position: relative; margin-top: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      position: relative;
+      margin-top: 60px;
     }
-    .edu-row::before {
-      content: ''; position: absolute; top: 62px; left: 16%; right: 16%;
-      height: 1px; background: linear-gradient(90deg, transparent, var(--p1), transparent);
-    }
-    .edu-item { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; z-index: 1; }
-    .edu-yr { font-size: .88rem; color: var(--p1); margin-bottom: 14px; font-weight: 600; font-style: italic; }
-    .edu-dot {
-      width: 13px; height: 13px; border-radius: 50%;
-      background: var(--bg); border: 2px solid var(--p1);
-      box-shadow: 0 0 0 4px rgba(59,130,246,.15);
-      margin-bottom: 24px; transition: transform .3s var(--spring);
-    }
-    .edu-item:hover .edu-dot { transform: scale(1.4); box-shadow: 0 0 0 6px rgba(59,130,246,.2); }
-    .edu-circle {
-      width: 104px; height: 104px; border-radius: 50%;
-      background: var(--card-2); border: 1.5px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden; cursor: pointer;
-      transition: all .3s var(--spring); margin-bottom: 16px;
-    }
-    .edu-item:hover .edu-circle { border-color: var(--p1); box-shadow: 0 0 0 4px rgba(59,130,246,.12), var(--sh2); transform: scale(1.07); }
-    .edu-circle img { width: 85%; height: 85%; object-fit: contain; }
-    .edu-ttl { font-size: .97rem; font-weight: 600; color: var(--text); max-width: 160px; line-height: 1.4; }
-    .edu-loc { font-size: .72rem; color: var(--muted); display: flex; align-items: center; gap: 4px; justify-content: center; margin-top: 5px; }
-    .edu-loc i { color: var(--p1); font-size: .66rem; }
 
-    /* ── CONTACT ── */
+    .edu-row::before {
+      content: '';
+      position: absolute;
+      top: 62px;
+      left: 16%;
+      right: 16%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--p1), transparent);
+    }
+
+    .edu-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .edu-yr {
+      font-size: .88rem;
+      color: var(--p1);
+      margin-bottom: 14px;
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    .edu-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--p1);
+      box-shadow: 0 0 0 4px rgba(59,130,246,.15);
+      margin-bottom: 24px;
+    }
+
+    .edu-circle {
+      width: 104px;
+      height: 104px;
+      border-radius: 50%;
+      background: var(--card-2);
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all .3s var(--spring);
+      margin-bottom: 16px;
+    }
+
+    .edu-circle img {
+      width: 85%;
+      height: 85%;
+      object-fit: contain;
+    }
+
+    .edu-ttl {
+      font-size: .97rem;
+      font-weight: 600;
+      color: var(--text);
+      max-width: 160px;
+      line-height: 1.4;
+    }
+
+    .edu-loc {
+      font-size: .72rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      justify-content: center;
+      margin-top: 5px;
+    }
+
+    .edu-loc i {
+      color: var(--p1);
+      font-size: .66rem;
+    }
+
+    /* CONTACT */
     #contact {
       background: linear-gradient(160deg, var(--card) 0%, var(--card-2) 50%, var(--bg-2) 100%);
-      position: relative; overflow: hidden;
-      border: 1px solid var(--border); border-radius: var(--r);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
       margin-bottom: 40px;
     }
-    #contact::before {
-      content: ''; position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(59,130,246,.03) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(59,130,246,.03) 1px, transparent 1px);
-      background-size: 60px 60px; pointer-events: none;
-    }
+
     .contact-in {
-      max-width: 960px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 88px;
-      align-items: center; position: relative; z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 88px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
       padding: 80px 48px;
     }
+
     .ct-eyebrow {
       width: 100px;
       height: 3px;
@@ -616,208 +1345,675 @@
       border-radius: 3px;
     }
 
-    .ct-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--p1); }
-    .ct-title { font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 700; line-height: 1.05; color: var(--text); margin-bottom: 18px; }
-    .ct-title em { color: var(--p1); font-style: normal; }
-    .ct-desc { color: var(--muted); font-size: .9rem; line-height: 1.85; font-weight: 300; margin-bottom: 36px; }
-    .ct-desc strong { color: var(--text); font-weight: 400; }
-    .ct-info { display: flex; flex-direction: column; gap: 13px; }
-    .ct-irow { display: flex; align-items: center; gap: 13px; color: var(--muted); font-size: .84rem; font-weight: 300; }
-    .ct-irow i {
-      width: 34px; height: 34px; background: var(--card);
-      border: 1px solid var(--border); border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: .74rem; color: var(--p1); flex-shrink: 0;
+    .ct-title {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 18px;
     }
-    .ct-cards { display: flex; flex-direction: column; gap: 13px; }
+
+    .ct-title em {
+      color: var(--p1);
+      font-style: normal;
+    }
+
+    .ct-desc {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.85;
+      font-weight: 300;
+      margin-bottom: 36px;
+    }
+
+    .ct-desc strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .ct-info {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .ct-irow {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 300;
+    }
+
+    .ct-irow i {
+      width: 34px;
+      height: 34px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .74rem;
+      color: var(--p1);
+      flex-shrink: 0;
+    }
+
+    .ct-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
     .ct-card {
-      display: flex; align-items: center; gap: 18px; padding: 20px 24px;
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--r); text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 20px 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
       transition: all .3s var(--spring);
     }
-    .ct-card:hover { background: var(--card-2); border-color: rgba(59,130,246,.3); transform: translateX(6px); }
-    .ct-cico { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
-    .ct-cico.em { background: rgba(59,130,246,.12); color: var(--p1); }
-    .ct-cico.li { background: rgba(59,130,246,.08); color: #60a5fa; }
-    .ct-cico.cv { background: rgba(139,92,246,.1); color: var(--p2); }
-    .ct-clbl { font-size: .62rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted-2); margin-bottom: 3px; }
-    .ct-cval { font-size: .88rem; font-weight: 500; color: var(--text); }
-    .ct-arr { margin-left: auto; color: var(--muted-2); font-size: .78rem; transition: all .2s; }
-    .ct-card:hover .ct-arr { color: var(--p1); transform: translateX(4px); }
 
-    /* ── FOOTER ── */
+    .ct-card:hover {
+      background: var(--card-2);
+      border-color: rgba(59,130,246,.3);
+      transform: translateX(6px);
+    }
+
+    .ct-cico {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .ct-cico.em {
+      background: rgba(59,130,246,.12);
+      color: var(--p1);
+    }
+
+    .ct-cico.li {
+      background: rgba(59,130,246,.08);
+      color: #60a5fa;
+    }
+
+    .ct-cico.cv {
+      background: rgba(139,92,246,.1);
+      color: var(--p2);
+    }
+
+    .ct-clbl {
+      font-size: .62rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-bottom: 3px;
+    }
+
+    .ct-cval {
+      font-size: .88rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .ct-arr {
+      margin-left: auto;
+      color: var(--muted-2);
+      font-size: .78rem;
+    }
+
     footer {
-      background: var(--card-2); border-top: 1px solid var(--border);
-      padding: 28px 48px; display: flex; align-items: center; justify-content: space-between;
+      background: var(--card-2);
+      border-top: 1px solid var(--border);
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       border-radius: 0 0 var(--r) var(--r);
     }
-    .ft-logo { font-size: 1rem; font-weight: 700; color: var(--p1); }
-    .ft-copy { font-size: .74rem; color: var(--muted-2); }
-    .ft-links { display: flex; gap: 22px; }
-    .ft-links a { font-size: .74rem; color: var(--muted); text-decoration: none; transition: color .2s; }
-    .ft-links a:hover { color: var(--p1); }
 
-    /* ── BACK TO TOP ── */
-    .btt {
-      position: fixed; bottom: 88px; right: 28px;
-      width: 42px; height: 42px;
-      background: var(--p1); border-radius: var(--r-sm);
-      display: flex; align-items: center; justify-content: center;
-      color: white; font-size: .8rem; opacity: 0;
-      transform: translateY(12px); transition: all .3s var(--spring);
-      cursor: pointer; text-decoration: none; z-index: 90; box-shadow: var(--sh);
+    .ft-logo {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--p1);
     }
-    .btt.visible { opacity: 1; transform: none; }
-    .btt:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(59,130,246,.35); }
 
-    /* ── MODALS ── */
+    .ft-copy {
+      font-size: .74rem;
+      color: var(--muted-2);
+    }
+
+    .ft-links {
+      display: flex;
+      gap: 22px;
+    }
+
+    .ft-links a {
+      font-size: .74rem;
+      color: var(--muted);
+    }
+
+    /* MODALS */
     .mo {
-      position: fixed; inset: 0;
-      background: rgba(8,12,20,.75); backdrop-filter: blur(12px);
-      z-index: 2000; display: flex; align-items: center; justify-content: center;
-      padding: 20px; opacity: 0; pointer-events: none; transition: opacity .3s;
+      position: fixed;
+      inset: 0;
+      background: rgba(8,12,20,.75);
+      backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
     }
-    .mo.active { opacity: 1; pointer-events: all; }
+
+    .mo.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
     .mc {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--r); width: 100%; max-width: 80%; max-height: 88vh;
-      overflow-y: auto; box-shadow: 0 32px 80px rgba(0,0,0,.4);
-      transform: translateY(28px) scale(.97); transition: transform .38s var(--spring);
-      scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      width: 100%;
+      max-width: 80%;
+      max-height: 88vh;
+      overflow-y: auto;
+      box-shadow: 0 32px 80px rgba(0,0,0,.4);
+      transform: translateY(28px) scale(.97);
+      transition: transform .38s var(--spring);
     }
-    .mo.active .mc { transform: none; }
+
+    .mo.active .mc {
+      transform: none;
+    }
+
     .mh {
-      padding: 26px 30px; border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: 16px; position: relative;
+      padding: 26px 30px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
     }
-    .mh-stripe { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--p1), var(--p2)); }
+
+    .mh-stripe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--p1), var(--p2));
+    }
+
     .mh-logo {
-      width: 52px; height: 52px; border-radius: 10px;
-      object-fit: contain; background: var(--card-2);
-      padding: 5px; border: 1px solid var(--border); flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      object-fit: contain;
+      background: var(--card-2);
+      padding: 5px;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
     }
-    .mh-co { font-size: 1.1rem; font-weight: 700; color: var(--text); }
-    .mh-role { font-size: .78rem; color: var(--muted); margin-top: 2px; }
-    .mh-meta { font-size: .71rem; color: var(--muted-2); display: flex; gap: 14px; margin-top: 5px; flex-wrap: wrap; }
-    .mh-meta span { display: flex; align-items: center; gap: 4px; }
-    .mh-meta i { color: var(--p1); }
+
+    .mh-co {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .mh-role {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .mh-meta {
+      font-size: .71rem;
+      color: var(--muted-2);
+      display: flex;
+      gap: 14px;
+      margin-top: 5px;
+      flex-wrap: wrap;
+    }
+
+    .mh-meta span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .mh-meta i {
+      color: var(--p1);
+    }
+
     .m-close {
-      position: absolute; top: 14px; right: 14px; width: 30px; height: 30px;
-      border-radius: var(--r-sm); border: 1px solid var(--border); background: transparent;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      color: var(--muted); font-size: .75rem; transition: all .2s;
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 30px;
+      height: 30px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: .75rem;
+      transition: all .2s;
     }
-    .m-close:hover { background: rgba(239,68,68,.1); border-color: rgba(239,68,68,.3); color: #ef4444; transform: rotate(90deg); }
-    .mb { padding: 26px 30px; }
-    .mb-block { margin-bottom: 22px; }
-    .mb-block:last-child { margin-bottom: 0; }
+
+    .m-close:hover {
+      background: rgba(239,68,68,.1);
+      border-color: rgba(239,68,68,.3);
+      color: #ef4444;
+      transform: rotate(90deg);
+    }
+
+    .mb {
+      padding: 26px 30px;
+    }
+
+    .mb-block {
+      margin-bottom: 22px;
+    }
+
+    .mb-block:last-child {
+      margin-bottom: 0;
+    }
+
     .mb-block h4 {
-      font-size: .68rem; font-weight: 700; letter-spacing: 1.8px;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 11px;
-      display: flex; align-items: center; gap: 7px;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 11px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
     }
-    .mb-block h4 i { color: var(--p1); }
-    .mb-block p { font-size: .86rem; color: var(--muted); line-height: 1.75; }
-    .mb-block p strong { color: var(--text); font-weight: 600; }
-    .mb-block ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+    .mb-block h4 i {
+      color: var(--p1);
+    }
+
+    .mb-block p {
+      font-size: .86rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .mb-block p strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .mb-block ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
     .mb-block ul li {
-      font-size: .83rem; color: var(--muted); padding-left: 18px;
-      position: relative; line-height: 1.55;
+      font-size: .83rem;
+      color: var(--muted);
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.55;
     }
-    .mb-block ul li::before { content: '▸'; position: absolute; left: 0; color: var(--p1); font-weight: 600; }
-    .m-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    .mb-block ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--p1);
+      font-weight: 600;
+    }
+
+    .m-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
     .m-tags span {
-      background: rgba(59,130,246,.08); border: 1px solid rgba(59,130,246,.2);
-      color: var(--text); padding: 4px 12px; border-radius: 5px; font-size: .72rem; font-weight: 600;
+      background: rgba(59,130,246,.08);
+      border: 1px solid rgba(59,130,246,.2);
+      color: var(--text);
+      padding: 4px 12px;
+      border-radius: 5px;
+      font-size: .72rem;
+      font-weight: 600;
     }
-    /* proj modal variants */
-    .mh-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-    .mh-icon.rep { background: rgba(59,130,246,.1); color: var(--p1); }
-    .mh-icon.aud { background: rgba(239,68,68,.1); color: #ef4444; }
-    .mh-icon.ctrl { background: rgba(139,92,246,.1); color: var(--p2); }
-    .mh-icon.mod { background: rgba(16,185,129,.1); color: #10b981; }
-    .mh-cat { font-size: .62rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--p1); margin-bottom: 3px; }
-    .mh-ttl { font-size: 1.15rem; font-weight: 700; color: var(--text); }
-    .mh-ctx { font-size: .72rem; color: var(--muted-2); display: flex; align-items: center; gap: 5px; margin-top: 3px; }
-    
-    /* edu modal */
+
+    .mh-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .mh-icon.rep {
+      background: rgba(59,130,246,.1);
+      color: var(--p1);
+    }
+
+    .mh-icon.aud {
+      background: rgba(239,68,68,.1);
+      color: #ef4444;
+    }
+
+    .mh-icon.ctrl {
+      background: rgba(139,92,246,.1);
+      color: var(--p2);
+    }
+
+    .mh-icon.mod,
+    .mh-icon.auto {
+      background: rgba(16,185,129,.1);
+      color: #10b981;
+    }
+
+    .mh-cat {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--p1);
+      margin-bottom: 3px;
+    }
+
+    .mh-ttl {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .mh-ctx {
+      font-size: .72rem;
+      color: var(--muted-2);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 3px;
+    }
+
     .edu-mh {
-      padding: 24px 30px; border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: 16px; position: relative;
+      padding: 24px 30px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
     }
+
     .edu-mlogo {
-      width: 58px; height: 58px; border-radius: 50%;
-      background: var(--card-2); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden; flex-shrink: 0; padding: 4px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      padding: 4px;
     }
-    .edu-mlogo img { width: 100%; height: 100%; object-fit: contain; }
-    .edu-myr { font-size: .8rem; font-style: italic; color: var(--p1); margin-bottom: 3px; font-weight: 600; }
-    .edu-mh h2 { font-size: 1.1rem; font-weight: 700; color: var(--text); }
-    .edu-mschool { font-size: .78rem; color: var(--muted); margin-top: 2px; }
-    body.locked { overflow: hidden; }
 
-    /* ── DOCK ── */
+    .edu-mlogo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .edu-mschool {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    body.locked {
+      overflow: hidden;
+    }
+
+    /* DOCK */
     .dock {
-      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 30px; padding: 8px; display: flex; gap: 4px;
-      z-index: 100; box-shadow: var(--sh);
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 8px;
+      display: flex;
+      gap: 4px;
+      z-index: 100;
+      box-shadow: var(--sh);
     }
-    .dock a {
-      width: 44px; height: 44px; border-radius: 50%;
-      display: grid; place-items: center; color: var(--muted);
-      transition: var(--transition); position: relative;
-    }
-    .dock a:hover, .dock a.active { background: var(--p1); color: white; }
-    .dock-sep { width: 1px; height: 30px; background: var(--border); margin: 5px 0; }
-    .tooltip {
-      position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
-      background: var(--text); color: var(--bg); padding: 4px 12px;
-      border-radius: var(--r-sm); font-size: .72rem; white-space: nowrap;
-      opacity: 0; pointer-events: none; transition: opacity .2s; margin-bottom: 8px;
-    }
-    .dock a:hover .tooltip { opacity: 1; }
 
-    /* ── RESPONSIVE ── */
-    @media(max-width:1024px){
-      .bc-finance{grid-column:span 12;grid-row:span 1}
-      .bc-tools,.bc-soft{grid-column:span 6}
+    .dock a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      transition: var(--transition);
+      position: relative;
     }
-    @media(max-width:768px){
-      .nav{padding:14px 24px}.nav.scrolled{padding:12px 24px}
-      .nav-links li:not(:last-child){display:none}
-      #hero{padding:100px 24px 80px}
-      .stats-band{grid-template-columns:repeat(2,1fr)}
-      #about .inner{grid-template-columns:1fr;gap:48px}
-      .contact-in{grid-template-columns:1fr;gap:48px;padding:56px 28px}
-      .proj-grid{grid-template-columns:1fr}
-      .tl{padding-left:22px}.tl-yr{display:none}
-      footer{flex-direction:column;gap:14px;text-align:center;padding:20px}
-      .edu-row{flex-direction:column;align-items:flex-start;padding-left:20px}
-      .edu-row::before{display:none}
-      .edu-item{flex-direction:row;gap:16px;align-items:flex-start;text-align:left;margin-bottom:32px;width:100%}
-      .edu-circle{flex-shrink:0}
-      .s{padding:64px 24px}
+
+    .dock a:hover,
+    .dock a.active {
+      background: var(--p1);
+      color: white;
     }
-    @media(max-width:640px){
-      .bc-tools,.bc-soft{grid-column:span 12}
-      .lang-grid{grid-template-columns:1fr}
-      .sk-soft-grid{grid-template-columns:1fr}
-      .about-grid{grid-template-columns:1fr}
+
+    .dock-sep {
+      width: 1px;
+      height: 30px;
+      background: var(--border);
+      margin: 5px 0;
+    }
+
+    .tooltip {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--text);
+      color: var(--bg);
+      padding: 4px 12px;
+      border-radius: var(--r-sm);
+      font-size: .72rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s;
+      margin-bottom: 8px;
+    }
+
+    .dock a:hover .tooltip {
+      opacity: 1;
+    }
+
+    .btt {
+      position: fixed;
+      bottom: 88px;
+      right: 28px;
+      width: 42px;
+      height: 42px;
+      background: var(--p1);
+      border-radius: var(--r-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: .8rem;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: all .3s var(--spring);
+      cursor: pointer;
+      z-index: 90;
+      box-shadow: var(--sh);
+    }
+
+    .btt.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:1024px) {
+      .bc-finance {
+        grid-column: span 12;
+        grid-row: span 1;
+      }
+
+      .bc-tools,
+      .bc-soft {
+        grid-column: span 6;
+      }
+
+      .slide-page {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width:768px) {
+      .nav {
+        padding: 14px 24px;
+      }
+
+      .nav.scrolled {
+        padding: 12px 24px;
+      }
+
+      .nav-links li:not(:last-child) {
+        display: none;
+      }
+
+      #hero {
+        padding: 100px 24px 80px;
+      }
+
+      .stats-band {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      #about .inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .contact-in {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 56px 28px;
+      }
+
+      .tl {
+        padding-left: 22px;
+      }
+
+      .tl-yr {
+        display: none;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 14px;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .edu-row {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 20px;
+      }
+
+      .edu-row::before {
+        display: none;
+      }
+
+      .edu-item {
+        flex-direction: row;
+        gap: 16px;
+        align-items: flex-start;
+        text-align: left;
+        margin-bottom: 32px;
+        width: 100%;
+      }
+
+      .edu-circle {
+        flex-shrink: 0;
+      }
+
+      .s {
+        padding: 64px 24px;
+      }
+
+      .mc {
+        max-width: 94%;
+      }
+    }
+
+    @media(max-width:640px) {
+      .bc-tools,
+      .bc-soft {
+        grid-column: span 12;
+      }
+
+      .lang-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sk-soft-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .slide-page {
+        grid-template-columns: 1fr;
+      }
+
+      .slider-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+      }
     }
   </style>
 </head>
+
 <body>
 
 <canvas id="bg-canvas"></canvas>
 
-<button class="theme-btn" id="themeBtn" aria-label="Changer de thème">
-  <i class="fa-solid fa-moon" id="themeIcon"></i>
-</button>
-
-<!-- NAV -->
 <nav class="nav">
   <div class="nav-logo">
     <div class="nav-logo-mark">AM</div>
@@ -836,7 +2032,6 @@
 <main>
 <div class="container">
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-bg">
     <div class="hero-bg-grid"></div>
@@ -849,16 +2044,17 @@
       <span class="line1">Audit, Contrôle de gestion &amp; Finance</span>
       <span class="line2"><span class="grad-text">PORTFOLIO</span></span>
     </h1>
-    <p style="text-align: center;" class="hero-sub">Mastère Spécialisé · <strong>TBS Education, Toulouse</strong><br>Fiabilisation des données, analyse et pilotage de la performance.</p>
+    <p style="text-align:center" class="hero-sub">
+      Mastère Spécialisé · <strong>TBS Education, Toulouse</strong><br>
+      Fiabilisation des données, analyse et pilotage de la performance.
+    </p>
     <div class="hero-actions">
       <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i>Me contacter</a>
       <a href="#experience" class="btn btn-outline"><i class="fas fa-briefcase"></i>Mon parcours</a>
     </div>
   </div>
-  <div class="hero-scroll" aria-hidden="true"><div class="hero-scroll-line"></div></div>
 </section>
 
-<!-- STATS BAND -->
 <div class="stats-band reveal">
   <div class="stat-item">
     <div class="stat-num"><span data-t="4">0</span></div>
@@ -878,32 +2074,34 @@
   </div>
 </div>
 
-<!-- ABOUT -->
 <section id="about" class="s reveal">
   <div class="inner">
     <div class="about-body">
       <div class="s-eyebrow"></div>
       <h2 class="s-title">Qui <em>je suis</em> ?</h2>
       <p>Étudiant en <strong>Mastère Spécialisé Expert en Audit Interne et Contrôle de Gestion</strong> à TBS Education, je me suis construit une solide expérience à travers des missions variées en France et au Cameroun.</p>
-      <p>Mon parcours m'a permis de développer une double compétence : technique avec la maîtrise d'outils avancés (Excel, Power BI, SAP), et analytique avec la capacité à produire des analyses financières fiables et orientées décision.</p>
-
+      <p>Mon parcours m'a permis de développer une double compétence : technique avec la maîtrise d'outils avancés, et analytique avec la capacité à produire des analyses financières fiables et orientées décision.</p>
     </div>
+
     <div class="about-grid">
       <div class="acard">
         <div class="acard-ico"><i class="fas fa-chart-line"></i></div>
         <h3>Contrôle de gestion</h3>
         <p>Suivi budgétaire, analyse des écarts, reporting et KPIs d'aide à la décision.</p>
       </div>
+
       <div class="acard">
         <div class="acard-ico"><i class="fas fa-shield-halved"></i></div>
         <h3>Audit interne</h3>
         <p>Analyses des systèmes et des processus, cartographie et gestion des risques.</p>
       </div>
+
       <div class="acard">
         <div class="acard-ico"><i class="fas fa-file-invoice"></i></div>
         <h3>Comptabilité & IFRS</h3>
         <p>Comptabilité générale, normes internationales et consolidation de groupe.</p>
       </div>
+
       <div class="acard">
         <div class="acard-ico"><i class="fas fa-database"></i></div>
         <h3>Outils & Reporting</h3>
@@ -913,7 +2111,6 @@
   </div>
 </section>
 
-<!-- EXPERIENCE -->
 <section id="experience" class="s reveal">
   <div class="s-eyebrow"></div>
   <h2 class="s-title">Expériences <em>professionnelles</em></h2>
@@ -921,6 +2118,7 @@
 
   <div class="exp-wrap" style="margin-top:52px">
     <div class="tl">
+
       <div class="tl-item">
         <div class="tl-yr">2025</div>
         <div class="tl-dot"></div>
@@ -988,97 +2186,37 @@
           <button class="tl-btn" data-exp-modal="me-palm_beach"><i class="fas fa-plus"></i> Détails</button>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- PROJECTS DYNAMIQUE -->
 <section id="projects" class="s reveal">
   <div class="s-eyebrow"></div>
   <h2 class="s-title">Mes <em>projets</em></h2>
 
   <div class="filters">
     <button class="fbtn active" data-f="all">Tous</button>
-    <button class="fbtn" data-f="rep">Visualisation</button>
+    <button class="fbtn" data-f="rep">Reporting</button>
     <button class="fbtn" data-f="aud">Audit</button>
-    <button class="fbtn" data-f="ctrl">CDG</button>
+    <button class="fbtn" data-f="ctrl">Contrôle</button>
     <button class="fbtn" data-f="auto">Automatisation</button>
   </div>
 
   <div class="slider-wrapper">
-
-      <button class="slider-btn left" id="prevBtn">&#10094;</button>
-    
-      <div class="slider" id="projectsSlider">
-        <!-- Page 1 -->
-        <div class="slide-page">
-          <div class="proj-card" data-cat="rep" data-pm="mp-rep">
-            <div class="pc-top">
-              <div class="pc-ico rep"><i class="fas fa-chart-bar"></i></div>
-              <span class="pc-badge rep">Reporting</span>
-            </div>
-            <div class="pc-title">Tableau de bord Power BI</div>
-            <div class="pc-desc">Analyse des écarts budgétaires et reporting automatisé pour un service commercial — suivi mensuel des KPIs.</div>
-            <div class="pc-result"><i class="fas fa-check-circle"></i> −35% de temps de reporting</div>
-            <div class="pc-foot">
-              <div class="pc-tags"><span>Power BI</span><span>DAX</span><span>Excel</span></div>
-              <button class="pc-arr"><i class="fas fa-arrow-right"></i></button>
-            </div>
-          </div>
-
-          <div class="proj-card" data-cat="aud" data-pm="mp-aud">
-            <div class="pc-top">
-              <div class="pc-ico aud"><i class="fas fa-shield-halved"></i></div>
-              <span class="pc-badge aud">Audit</span>
-            </div>
-            <div class="pc-title">Audit processus achats</div>
-            <div class="pc-desc">Cartographie des risques et recommandations pour améliorer le contrôle interne sur le cycle achats-fournisseurs.</div>
-            <div class="pc-result"><i class="fas fa-check-circle"></i> 12 recommandations formulées</div>
-            <div class="pc-foot">
-              <div class="pc-tags"><span>Audit interne</span><span>Risques</span><span>COSO</span></div>
-              <button class="pc-arr"><i class="fas fa-arrow-right"></i></button>
-            </div>
-          </div>
-
-          <!-- Retraitement de fichier texte -->
-          <div class="proj-card" data-cat="auto" data-pm="mp-retraitement">
-            <div class="pc-top">
-              <div class="pc-ico auto"><i class="fas fa-building-columns"></i></div>
-              <span class="pc-badge auto">Automatisation</span>
-            </div>
-            <div class="pc-title">Retraitement de fichier texte</div>
-            <div class="pc-desc">Automatiser la récupération et le retraitement de fichiers texte pour améliorer leur qualité et faciliter leur exploitation.</div>
-            <div class="pc-result"><i class="fas fa-check-circle"></i> 3 entités consolidées</div>
-            <div class="pc-foot">
-              <div class="pc-tags"><span>Excel</span><span>VBA</span></div>
-              <button class="pc-arr"><i class="fas fa-arrow-right"></i></button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Page 2 -->
-        <div class="slide-page">
-          <div class="proj-card" data-cat="ctrl" data-pm="mp-ctrl">
-            <div class="pc-top">
-              <div class="pc-ico ctrl"><i class="fas fa-gears"></i></div>
-              <span class="pc-badge ctrl">CDG</span>
-            </div>
-            <div class="pc-title">Automatisation Excel VBA</div>
-            <div class="pc-desc">Macro pour le traitement automatisé des données comptables et génération de rapports mensuels standardisés.</div>
-            <div class="pc-result"><i class="fas fa-check-circle"></i> 8h économisées/mois</div>
-            <div class="pc-foot">
-              <div class="pc-tags"><span>Excel VBA</span><span>Power Query</span></div>
-              <button class="pc-arr"><i class="fas fa-arrow-right"></i></button>
-            </div>
-          </div>
-        </div>
-    </div>
-
-    <button class="slider-btn right" id="nextBtn">&#10095;</button>
+    <button class="slider-btn left" id="prevBtn" aria-label="Projet précédent">&#10094;</button>
+    <div class="slider" id="projectsSlider"></div>
+    <button class="slider-btn right" id="nextBtn" aria-label="Projet suivant">&#10095;</button>
   </div>
+
+  <div class="projects-pagination" id="projectsPagination"></div>
+
+  <p class="projects-empty hidden" id="projectsEmpty">
+    Aucun projet dans cette catégorie.
+  </p>
 </section>
 
-<!-- SKILLS -->
 <section id="skills" class="s reveal">
   <div class="s-eyebrow"></div>
   <h2 class="s-title">Compétences <em>& Outils</em></h2>
@@ -1091,7 +2229,7 @@
       </div>
       <div class="fin-list">
         <div class="fin-row"><div class="fin-ico"><i class="fas fa-file-invoice-dollar"></i></div><span class="fin-nm">Contrôle de gestion</span></div>
-        <div class="fin-row"><div class="fin-ico"><i class="fas fa-shield-halved"></i></div><span class="fin-nm">Audit interne & contrôle interne (COSO)</span></div>
+        <div class="fin-row"><div class="fin-ico"><i class="fas fa-shield-halved"></i></div><span class="fin-nm">Audit interne & contrôle interne</span></div>
         <div class="fin-row"><div class="fin-ico"><i class="fas fa-balance-scale"></i></div><span class="fin-nm">Comptabilité générale et analytique</span></div>
         <div class="fin-row"><div class="fin-ico"><i class="fas fa-building-columns"></i></div><span class="fin-nm">Normes IFRS & consolidation</span></div>
         <div class="fin-row"><div class="fin-ico"><i class="fas fa-coins"></i></div><span class="fin-nm">Gestion de trésorerie & prévisionnel</span></div>
@@ -1130,10 +2268,10 @@
       <div class="sk-soft-grid">
         <div class="srow"><i class="fas fa-users"></i> Travail en équipe</div>
         <div class="srow"><i class="fas fa-magnifying-glass-chart"></i> Esprit d'analyse</div>
-        <div class="srow"><i class="fas fa-lightbulb"></i><span>Curiosité</span></div>
+        <div class="srow"><i class="fas fa-lightbulb"></i> Curiosité</div>
         <div class="srow"><i class="fas fa-bullseye"></i> Rigueur & précision</div>
         <div class="srow"><i class="fas fa-comments"></i> Communication</div>
-        <div class="srow"><i class="fas fa-bolt"></i><span>Proactivité</span></div>
+        <div class="srow"><i class="fas fa-bolt"></i> Proactivité</div>
         <div class="srow"><i class="fas fa-arrows-rotate"></i> Adaptabilité</div>
         <div class="srow"><i class="fas fa-brain"></i> Gestion du stress</div>
       </div>
@@ -1153,7 +2291,6 @@
   </div>
 </section>
 
-<!-- EDUCATION -->
 <section id="education" class="s reveal">
   <div class="s-eyebrow"></div>
   <h2 class="s-title">Mon <em>parcours académique</em></h2>
@@ -1166,6 +2303,7 @@
       <div class="edu-ttl">Mastère Spécialisé AICG</div>
       <div class="edu-loc"><i class="fas fa-map-marker-alt"></i> TBS Education – Toulouse</div>
     </div>
+
     <div class="edu-item">
       <div class="edu-yr">2025</div>
       <div class="edu-dot"></div>
@@ -1173,6 +2311,7 @@
       <div class="edu-ttl">Programme Grande École</div>
       <div class="edu-loc"><i class="fas fa-map-marker-alt"></i> EDC Paris – Puteaux</div>
     </div>
+
     <div class="edu-item">
       <div class="edu-yr">2023</div>
       <div class="edu-dot"></div>
@@ -1180,6 +2319,7 @@
       <div class="edu-ttl">Master en Comptabilité & Finance</div>
       <div class="edu-loc"><i class="fas fa-map-marker-alt"></i> UCAC – Yaoundé, Cameroun</div>
     </div>
+
     <div class="edu-item">
       <div class="edu-yr">2021</div>
       <div class="edu-dot"></div>
@@ -1190,28 +2330,33 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="reveal">
   <div class="contact-in">
     <div>
       <div class="ct-eyebrow"></div>
       <h2 class="ct-title">Prenons <em>contact</em></h2>
-      <p class="ct-desc">Actuellement à la recherche d'un stage de 4 à 6 mois, <strong>dès que possible</strong>. Ouvert aux opportunités dans les métiers de la finance.</p>
+      <p class="ct-desc">
+        Actuellement à la recherche d'un stage de 4 à 6 mois, <strong>dès que possible</strong>.
+        Ouvert aux opportunités dans les métiers de la finance.
+      </p>
       <div class="ct-info">
         <div class="ct-irow"><i class="fas fa-map-marker-alt"></i>Toulouse · Mobilité nationale</div>
       </div>
     </div>
+
     <div class="ct-cards">
       <a href="mailto:r.adammbea@gmail.com" class="ct-card">
         <div class="ct-cico em"><i class="fas fa-envelope"></i></div>
         <div><div class="ct-clbl">Email</div><div class="ct-cval">Envoyer un message</div></div>
         <i class="fas fa-arrow-right ct-arr"></i>
       </a>
+
       <a href="https://linkedin.com/in/adam-mbea" target="_blank" rel="noopener" class="ct-card">
         <div class="ct-cico li"><i class="fab fa-linkedin-in"></i></div>
         <div><div class="ct-clbl">LinkedIn</div><div class="ct-cval">Connecter sur LinkedIn</div></div>
         <i class="fas fa-arrow-right ct-arr"></i>
       </a>
+
       <a href="docs/CV-Adam-Mbea.pdf" target="_blank" rel="noopener" class="ct-card">
         <div class="ct-cico cv"><i class="fas fa-file-pdf"></i></div>
         <div><div class="ct-clbl">CV</div><div class="ct-cval">Télécharger mon CV</div></div>
@@ -1219,19 +2364,19 @@
       </a>
     </div>
   </div>
+
   <footer>
-    <div class="ft-logo">Adam Mbea</div>
-    <span class="ft-copy">© 2025 · Finance & Audit · TBS Education</span>
+    <div class="ft-logo"></div>
+    <span class="ft-copy">© 2025 · Portfolio</span>
     <div class="ft-links">
       <a href="#hero">Accueil</a>
     </div>
   </footer>
 </section>
 
-</div><!-- /container -->
+</div>
 </main>
 
-<!-- DOCK NAV -->
 <nav class="dock" aria-label="Navigation rapide">
   <a href="#hero" data-spy="hero"><i class="fas fa-house"></i><span class="tooltip">Accueil</span></a>
   <a href="#about" data-spy="about"><i class="fas fa-user"></i><span class="tooltip">Profil</span></a>
@@ -1247,246 +2392,1025 @@
 <a href="#hero" class="btt"><i class="fas fa-arrow-up"></i></a>
 
 <!-- EXPERIENCE MODALS -->
-  <!-- Modal Kactus -->
-<div class="mo" id="me-kactus" role="dialog" aria-modal="true" aria-label="Kactus"><div class="mc">
-  <div class="mh"><div class="mh-stripe"></div><img class="mh-logo" src="images/logos-exp/kactus.png" alt="Kactus"><div><div class="mh-co">Chargé de facturation - stage</div><div class="mh-role">Kactus</div><div class="mh-meta"><span><i class="fas fa-calendar"></i> sept. 2025 – oct. 2025</span><span><i class="fas fa-map-marker-alt"></i> Paris</span></div></div><button class="m-close" aria-label="Fermer"><i class="fas fa-times"></i></button></div>
-  <div class="mb">
-    <div class="mb-block"><h4><i class="fas fa-list-ul"></i>Missions</h4><ul><li>Gérer plus de 400 bookings sur Front</li><li>Réaliser la facturation clients et partenaires</li><li>Résoudre les litiges en coordination avec les équipes Évènementiel, Supply et Support</li><li>Améliorer l'outil de facturation</li><li>Concevoir sur Excel un outil pour automatiser le calcul des commissions</li></ul></div>
-    <div class="mb-block"><h4><i class="fas fa-star"></i>Compétences mobilisées</h4><div class="m-tags"><span>Excel</span><span>Front</span><span>Slack</span><span>Communication</span><span>Travail en équipe</span></div></div>
+<div class="mo" id="me-kactus" role="dialog" aria-modal="true" aria-label="Kactus">
+  <div class="mc">
+    <div class="mh">
+      <div class="mh-stripe"></div>
+      <img class="mh-logo" src="images/logos-exp/kactus.png" alt="Kactus">
+      <div>
+        <div class="mh-co">Chargé de facturation - stage</div>
+        <div class="mh-role">Kactus</div>
+        <div class="mh-meta">
+          <span><i class="fas fa-calendar"></i> sept. 2025 – oct. 2025</span>
+          <span><i class="fas fa-map-marker-alt"></i> Paris</span>
+        </div>
+      </div>
+      <button class="m-close" aria-label="Fermer"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mb">
+      <div class="mb-block">
+        <h4><i class="fas fa-list-ul"></i>Missions</h4>
+        <ul>
+          <li>Gérer plus de 400 bookings sur Front</li>
+          <li>Réaliser la facturation clients et partenaires</li>
+          <li>Résoudre les litiges en coordination avec les équipes</li>
+          <li>Améliorer l'outil de facturation</li>
+          <li>Concevoir sur Excel un outil pour automatiser le calcul des commissions</li>
+        </ul>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fas fa-star"></i>Compétences mobilisées</h4>
+        <div class="m-tags">
+          <span>Excel</span><span>Front</span><span>Slack</span><span>Communication</span><span>Travail en équipe</span>
+        </div>
+      </div>
+    </div>
   </div>
-</div></div>
-<!-- Modal CNPS -->
-<div class="mo" id="me-cnps"><div class="mc">
-  <div class="mh"><div class="mh-stripe"></div><img class="mh-logo" src="images/logos-exp/cnps.jpg" alt="CNPS"><div><div class="mh-co">Collaborateur comptable - CDD</div><div class="mh-role">Caisse Nationale de Prévoyance Sociale</div><div class="mh-meta"><span><i class="fas fa-calendar"></i> oct. 2023 – juil. 2024</span><span><i class="fas fa-map-marker-alt"></i> Yaoundé</span></div></div><button class="m-close"><i class="fas fa-times"></i></button></div>
-  <div class="mb">
-    <div class="mb-block"><h4><i class="fas fa-list-ul"></i>Missions</h4><ul><li>Traitement des opérations comptables courantes</li><li>Réconciliations bancaires et contrôle des flux</li><li>Préparation de reportings financiers hebdomadaires</li><li>Support à l'analyse des états financiers</li></ul></div>
-    <div class="mb-block"><h4><i class="fas fa-star"></i>Compétences mobilisées</h4><div class="m-tags"><span>Comptabilité</span><span>Finance bancaire</span><span>Excel</span><span>Analyse financière</span></div></div>
+</div>
+
+<div class="mo" id="me-cnps">
+  <div class="mc">
+    <div class="mh">
+      <div class="mh-stripe"></div>
+      <img class="mh-logo" src="images/logos-exp/cnps.jpg" alt="CNPS">
+      <div>
+        <div class="mh-co">Collaborateur comptable - CDD</div>
+        <div class="mh-role">Caisse Nationale de Prévoyance Sociale</div>
+        <div class="mh-meta">
+          <span><i class="fas fa-calendar"></i> oct. 2023 – juil. 2024</span>
+          <span><i class="fas fa-map-marker-alt"></i> Yaoundé</span>
+        </div>
+      </div>
+      <button class="m-close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mb">
+      <div class="mb-block">
+        <h4><i class="fas fa-list-ul"></i>Missions</h4>
+        <ul>
+          <li>Traitement des opérations comptables courantes</li>
+          <li>Réconciliations bancaires et contrôle des flux</li>
+          <li>Préparation de reportings financiers hebdomadaires</li>
+          <li>Support à l'analyse des états financiers</li>
+        </ul>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fas fa-star"></i>Compétences mobilisées</h4>
+        <div class="m-tags">
+          <span>Comptabilité</span><span>Finance bancaire</span><span>Excel</span><span>Analyse financière</span>
+        </div>
+      </div>
+    </div>
   </div>
-</div></div>
-<!-- Modal PAK -->
-<div class="mo" id="me-pak"><div class="mc">
-  <div class="mh"><div class="mh-stripe"></div><img class="mh-logo" src="images/logos-exp/pak.jpg" alt="PAK"><div><div class="mh-co">Contrôleur de gestion - Stage</div><div class="mh-role">Port Autonome de Kribi</div><div class="mh-meta"><span><i class="fas fa-calendar"></i> mai 2022 – oct. 2022</span><span><i class="fas fa-map-marker-alt"></i> Kribi</span></div></div><button class="m-close"><i class="fas fa-times"></i></button></div>
-  <div class="mb">
-    <div class="mb-block"><h4><i class="fas fa-list-ul"></i>Missions</h4><ul><li>Assistance au contrôle fiscal des entreprises</li><li>Analyse de déclarations fiscales</li><li>Rédaction de notes de synthèse</li></ul></div>
-    <div class="mb-block"><h4><i class="fas fa-star"></i>Compétences mobilisées</h4><div class="m-tags"><span>Fiscalité</span><span>Droit fiscal</span><span>Analyse</span></div></div>
+</div>
+
+<div class="mo" id="me-pak">
+  <div class="mc">
+    <div class="mh">
+      <div class="mh-stripe"></div>
+      <img class="mh-logo" src="images/logos-exp/pak.jpg" alt="PAK">
+      <div>
+        <div class="mh-co">Contrôleur de gestion - Stage</div>
+        <div class="mh-role">Port Autonome de Kribi</div>
+        <div class="mh-meta">
+          <span><i class="fas fa-calendar"></i> mai 2022 – oct. 2022</span>
+          <span><i class="fas fa-map-marker-alt"></i> Kribi</span>
+        </div>
+      </div>
+      <button class="m-close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mb">
+      <div class="mb-block">
+        <h4><i class="fas fa-list-ul"></i>Missions</h4>
+        <ul>
+          <li>Suivi budgétaire et analyse des écarts</li>
+          <li>Préparation de tableaux de bord</li>
+          <li>Participation au reporting de gestion</li>
+        </ul>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fas fa-star"></i>Compétences mobilisées</h4>
+        <div class="m-tags">
+          <span>Contrôle de gestion</span><span>Excel</span><span>Reporting</span><span>Analyse</span>
+        </div>
+      </div>
+    </div>
   </div>
-</div></div>
-<!-- Modal Palm Beach -->
-<div class="mo" id="me-palm_beach"><div class="mc">
-  <div class="mh"><div class="mh-stripe"></div><img class="mh-logo" src="images/logos-exp/palm_beach.png" alt="Palm Beach"><div><div class="mh-co">Assistant comptable & chargé de reporting - Stage</div><div class="mh-role">Hôtel Palm Beach Plus</div><div class="mh-meta"><span><i class="fas fa-calendar"></i> jui. 2021 - oct. 2021</span><span><i class="fas fa-map-marker-alt"></i> Kribi</span></div></div><button class="m-close"><i class="fas fa-times"></i></button></div>
-  <div class="mb">
-    <div class="mb-block"><h4><i class="fas fa-list-ul"></i>Missions</h4><ul><li>Assistance au contrôle fiscal des entreprises</li><li>Analyse de déclarations fiscales</li><li>Rédaction de notes de synthèse</li></ul></div>
-    <div class="mb-block"><h4><i class="fas fa-star"></i>Compétences mobilisées</h4><div class="m-tags"><span>Fiscalité</span><span>Droit fiscal</span><span>Analyse</span></div></div>
+</div>
+
+<div class="mo" id="me-palm_beach">
+  <div class="mc">
+    <div class="mh">
+      <div class="mh-stripe"></div>
+      <img class="mh-logo" src="images/logos-exp/palm_beach.png" alt="Palm Beach">
+      <div>
+        <div class="mh-co">Assistant comptable & chargé de reporting - Stage</div>
+        <div class="mh-role">Hôtel Palm Beach Plus</div>
+        <div class="mh-meta">
+          <span><i class="fas fa-calendar"></i> jui. 2021 - oct. 2021</span>
+          <span><i class="fas fa-map-marker-alt"></i> Kribi</span>
+        </div>
+      </div>
+      <button class="m-close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mb">
+      <div class="mb-block">
+        <h4><i class="fas fa-list-ul"></i>Missions</h4>
+        <ul>
+          <li>Saisie comptable et contrôle des pièces justificatives</li>
+          <li>Préparation de reportings internes</li>
+          <li>Suivi des encaissements et rapprochements</li>
+        </ul>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fas fa-star"></i>Compétences mobilisées</h4>
+        <div class="m-tags">
+          <span>Comptabilité</span><span>Reporting</span><span>Excel</span><span>Organisation</span>
+        </div>
+      </div>
+    </div>
   </div>
-</div></div>
+</div>
 
 <!-- PROJECT MODALS -->
-<div class="mo" id="mp-rep"><div class="mc">
-  <div class="mh"><div class="mh-stripe"></div><div class="mh-icon rep"><i class="fas fa-chart-bar"></i></div><div><div class="mh-cat">Reporting</div><div class="mh-ttl">Tableau de bord Power BI</div><div class="mh-ctx"><i class="fas fa-calendar"></i> 2024–2025</div></div><button class="m-close"><i class="fas fa-times"></i></button></div>
-  <div class="mb"><div class="mb-block"><h4><i class="fas fa-bullseye"></i>Objectif</h4><p>Concevoir un outil de suivi mensuel des écarts budgétaires pour le service commercial d'un casino, en automatisant la collecte et la visualisation des données.</p></div><div class="mb-block"><h4><i class="fas fa-list-ul"></i>Réalisations</h4><ul><li>Connexion à des sources multiples via Power Query</li><li>Modélisation des données et calculs DAX</li><li>Réduction du temps de reporting de 35%</li></ul></div><div class="mb-block"><h4><i class="fas fa-wrench"></i>Outils</h4><div class="m-tags"><span>Power BI</span><span>DAX</span><span>Power Query</span><span>Excel</span></div></div></div>
-</div></div>
+<div class="mo" id="mp-rep">
+  <div class="mc">
+    <div class="mh">
+      <div class="mh-stripe"></div>
+      <div class="mh-icon rep"><i class="fas fa-chart-bar"></i></div>
+      <div>
+        <div class="mh-cat">Reporting</div>
+        <div class="mh-ttl">Tableau de bord Power BI</div>
+        <div class="mh-ctx"><i class="fas fa-calendar"></i> 2024–2025</div>
+      </div>
+      <button class="m-close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mb">
+      <div class="mb-block">
+        <h4><i class="fas fa-bullseye"></i>Objectif</h4>
+        <p>Concevoir un outil de suivi mensuel des écarts budgétaires en automatisant la collecte, le traitement et la visualisation des données.</p>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fas fa-list-ul"></i>Réalisations</h4>
+        <ul>
+          <li>Connexion à des sources multiples via Power Query</li>
+          <li>Modélisation des données et calculs DAX</li>
+          <li>Réduction du temps de reporting de 35%</li>
+        </ul>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fas fa-wrench"></i>Outils</h4>
+        <div class="m-tags"><span>Power BI</span><span>DAX</span><span>Power Query</span><span>Excel</span></div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<div class="mo" id="mp-aud"><div class="mc">
-  <div class="mh"><div class="mh-stripe"></div><div class="mh-icon aud"><i class="fas fa-shield-halved"></i></div><div><div class="mh-cat">Audit</div><div class="mh-ttl">Audit processus achats</div><div class="mh-ctx"><i class="fas fa-calendar"></i> 2024</div></div><button class="m-close"><i class="fas fa-times"></i></button></div>
-  <div class="mb"><div class="mb-block"><h4><i class="fas fa-bullseye"></i>Objectif</h4><p>Évaluer le niveau de contrôle interne sur le cycle achats-fournisseurs et formuler des recommandations d'amélioration.</p></div><div class="mb-block"><h4><i class="fas fa-list-ul"></i>Réalisations</h4><ul><li>Cartographie des risques selon référentiel COSO</li><li>Tests de conformité et d'efficacité</li><li>12 recommandations hiérarchisées par criticité</li></ul></div><div class="mb-block"><h4><i class="fas fa-wrench"></i>Outils</h4><div class="m-tags"><span>Audit interne</span><span>COSO</span><span>Matrice des risques</span></div></div></div>
-</div></div>
+<div class="mo" id="mp-aud">
+  <div class="mc">
+    <div class="mh">
+      <div class="mh-stripe"></div>
+      <div class="mh-icon aud"><i class="fas fa-shield-halved"></i></div>
+      <div>
+        <div class="mh-cat">Audit</div>
+        <div class="mh-ttl">Audit processus achats</div>
+        <div class="mh-ctx"><i class="fas fa-calendar"></i> 2024</div>
+      </div>
+      <button class="m-close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mb">
+      <div class="mb-block">
+        <h4><i class="fas fa-bullseye"></i>Objectif</h4>
+        <p>Évaluer le niveau de contrôle interne sur le cycle achats-fournisseurs et formuler des recommandations d'amélioration.</p>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fas fa-list-ul"></i>Réalisations</h4>
+        <ul>
+          <li>Cartographie des risques selon référentiel COSO</li>
+          <li>Tests de conformité et d'efficacité</li>
+          <li>12 recommandations hiérarchisées par criticité</li>
+        </ul>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fas fa-wrench"></i>Outils</h4>
+        <div class="m-tags"><span>Audit interne</span><span>COSO</span><span>Matrice des risques</span></div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<div class="mo" id="mp-ctrl"><div class="mc">
-  <div class="mh"><div class="mh-stripe"></div><div class="mh-icon ctrl"><i class="fas fa-gears"></i></div><div><div class="mh-cat">CDG</div><div class="mh-ttl">Automatisation Excel VBA</div><div class="mh-ctx"><i class="fas fa-calendar"></i> 2024</div></div><button class="m-close"><i class="fas fa-times"></i></button></div>
-  <div class="mb"><div class="mb-block"><h4><i class="fas fa-bullseye"></i>Objectif</h4><p>Automatiser le traitement mensuel des données comptables pour générer des rapports standardisés en quelques secondes.</p></div><div class="mb-block"><h4><i class="fas fa-list-ul"></i>Réalisations</h4><ul><li>Macro VBA de traitement et consolidation</li><li>Génération automatique de rapports PDF</li><li>Économie de 8 heures par mois</li></ul></div><div class="mb-block"><h4><i class="fas fa-wrench"></i>Outils</h4><div class="m-tags"><span>Excel VBA</span><span>Power Query</span></div></div></div>
-</div></div>
+<div class="mo" id="mp-ctrl">
+  <div class="mc">
+    <div class="mh">
+      <div class="mh-stripe"></div>
+      <div class="mh-icon ctrl"><i class="fas fa-gears"></i></div>
+      <div>
+        <div class="mh-cat">Contrôle</div>
+        <div class="mh-ttl">Automatisation Excel VBA</div>
+        <div class="mh-ctx"><i class="fas fa-calendar"></i> 2024</div>
+      </div>
+      <button class="m-close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mb">
+      <div class="mb-block">
+        <h4><i class="fas fa-bullseye"></i>Objectif</h4>
+        <p>Automatiser le traitement mensuel des données comptables pour générer des rapports standardisés en quelques secondes.</p>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fas fa-list-ul"></i>Réalisations</h4>
+        <ul>
+          <li>Macro VBA de traitement et consolidation</li>
+          <li>Génération automatique de rapports PDF</li>
+          <li>Économie de 8 heures par mois</li>
+        </ul>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fas fa-wrench"></i>Outils</h4>
+        <div class="m-tags"><span>Excel VBA</span><span>Power Query</span></div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <!-- Retraitement de fichier texte -->
-<div class="mo" id="mp-retraitement"><div class="mc">
-  <div class="mh"><div class="mh-stripe"></div><div class="mh-icon mod"><i class="fas fa-building-columns"></i></div><div><div class="mh-cat">Automatisation</div><div class="mh-ttl">Retraitement de fichier texte</div></div><button class="m-close"><i class="fas fa-times"></i></button></div>
-  <div class="mb"><div class="mb-block"><h4><i class="fas fa-bullseye"></i>Objectif</h4><p>Mettre en place un outil capable de traiter et transformer automatiquement des fichiers texte bruts afin d’en améliorer la qualité, la lisibilité et l’exploitation. L'outil a pour but de fiabiliser les données, de réduire les tâches manuelles et de préparer les fichiers pour une utilisation dans des processus d’analyse ou d’intégration.</p></div><div class="mb-block"><h4><i class="fas fa-list-ul"></i>Réalisations</h4><ul><li>Nettoyage des données</li><li>Extraction et structuration des informations utiles</li><li>Production de sorties exploitables</li></ul></div><div class="mb-block"><h4><i class="fas fa-wrench"></i>Outils</h4><div class="m-tags"><span>Excel</span><span>VBA</span></div></div></div>
-</div></div>
+<div class="mo" id="mp-retraitement">
+  <div class="mc">
+    <div class="mh">
+      <div class="mh-stripe"></div>
+      <div class="mh-icon auto"><i class="fas fa-building-columns"></i></div>
+      <div>
+        <div class="mh-cat">Automatisation</div>
+        <div class="mh-ttl">Retraitement de fichier texte</div>
+      </div>
+      <button class="m-close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mb">
+      <div class="mb-block">
+        <h4><i class="fas fa-bullseye"></i>Objectif</h4>
+        <p>Mettre en place un outil capable de traiter et transformer automatiquement des fichiers texte bruts afin d’en améliorer la qualité, la lisibilité et l’exploitation.</p>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fas fa-list-ul"></i>Réalisations</h4>
+        <ul>
+          <li>Nettoyage des données</li>
+          <li>Extraction et structuration des informations utiles</li>
+          <li>Production de sorties exploitables</li>
+        </ul>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fas fa-wrench"></i>Outils</h4>
+        <div class="m-tags"><span>Excel</span><span>VBA</span></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- EDUCATION MODALS -->
-  <!-- Modal TBS -->
-<div class="mo" id="me-tbs"><div class="mc">
-  <div class="edu-mh"><div class="mh-stripe"></div><div class="edu-mlogo"><img src="images/logos-edu/tbs.png" alt="TBS"></div><div><h2>Mastère Spécialisé Expert en Audit Interne et Contrôle de Gestion</h2><div class="edu-mschool">TBS Education – Toulouse</div></div><button class="m-close"><i class="fas fa-times"></i></button></div>
-  <div class="mb"><div class="mb-block"><h4><i class="fas fa-book"></i>Présentation du programme</h4><p>Le Mastère Spécialisé Expert en Audit Interne et Contrôle de Gestion de TBS Education représente une véritable valeur ajoutée dans mon parcours. Ce cursus m'a permis de développer une double compétence en audit interne et en contrôle de gestion, tout en renforçant ma capacité à analyser les risques, piloter la performance et assurer la conformité aux standards internationaux. À travers cette formation, j’ai appris à transformer les données en outils d’aide à la décision et à apporter une contribution concrète à la création de valeur en entreprise, renforçant mon employabilité et me préparant à occuper des fonctions stratégiques dès le début de ma carrière.</p></div><div class="mb-block"><h4><i class="fas fa-list-ul"></i>Matières principales</h4><ul><li>Analyse de la performance économique, financière, sociale et environnementale</li><li>Audit de la fonction ressources humaines</li><li>Audit et contrôle de gestion du système commercial et marketing</li><li>Audit interne et management des risques dans le secteur bancaire</li><li>Audit, contrôle et pilotage de la fonction achat</li><li>Comptabilité de gestion : target costing, méthodes et calcul des coûts</li><li>Comptabilité financière dans le contexte des principes comptables français</li><li>Comptes consolidés et comptes combinés dans le contexte des principes comptables internationaux / Approfondissement aux normes IFRS</li><li>Contrôle de gestion des grands projets, de la RD et de l’innovation</li><li>Contrôle de gestion et audit interne face aux nouveaux enjeux sociaux et sociétaux : Economie Sociale et Solidaire (ESS), contrôle de gestion social</li><li>Contrôle de gestion industriel et contrôle du système de production</li><li>Contrôle du système financier de l'entreprise : contrôle des investissements et gestion de trésorerie</li><li>Gestion prévisionnelle : budgets et reporting dans différents contextes organisationnels</li><li>Mergers and Acquisitions (M&A)</li><li>Normes et méthodes de l’audit et du contrôle interne</li><li>Pilotage de la performance stratégique (financière et extra-financière) : business unit, prix de transfert, tableau de bord et Balanced Scorecard</li></ul></div><div class="mb-block"><h4><i class="fas fa-star"></i>Compétences</h4><div class="m-tags"><span>Analyse financière</span><span>Contrôle de gestion et pilotage de la performance</span><span>Audit interne et contrôle interne</span><span>Management des risques</span><span>Comptabilité financière</span><span>Comptabilité de gestion</span><span>Normes comptables et consolidation</span><span>Pilotage stratégique</span><span>Audit interne</span><span>Gestion de la trésorerie et contrôle des investissements</span><span>Fusion-acquisition</span><span>Excel</span><span>VBA</span><span>Power BI</span></div></div></div>
-</div></div>
-  <!-- Modal EDC -->
-<div class="mo" id="me-edc"><div class="mc">
-  <div class="edu-mh"><div class="mh-stripe"></div><div class="edu-mlogo"><img src="images/logos-edu/edc.png" alt="EDC"></div><div><h2>Programme Grande École spécialisation en Audit & Contrôle de Gestion</h2><div class="edu-mschool">EDC Paris Business School</div></div><button class="m-close"><i class="fas fa-times"></i></button></div>
-  <div class="mb"><div class="mb-block"><h4><i class="fas fa-book"></i>Présentation du programme</h4><p>Audit & Contrôle de Gestion</p></div><div class="mb-block"><h4><i class="fas fa-list-ul"></i>Matières principales</h4><ul><li>Contrôle de gestion avancé</li><li>Audit financier et opérationnel</li><li>Finance d'entreprise</li><li>Management stratégique</li></ul></div><div class="mb-block"><h4><i class="fas fa-star"></i>Compétences</h4><div class="m-tags"><span>Audit financier</span><span>Finance d'entreprise</span><span>Analyse stratégique</span></div></div></div>
-</div></div>
-  <!-- Modal UCAC Master -->
-<div class="mo" id="me-ucac2"><div class="mc">
-  <div class="edu-mh"><div class="mh-stripe"></div><div class="edu-mlogo"><img src="images/logos-edu/ucac.png" alt="UCAC"></div><div><h2>Master en Comptabilité et Finance d'Entreprises</h2><div class="edu-mschool">Université Catholique d'Afrique Centrale</div></div><button class="m-close"><i class="fas fa-times"></i></button></div>
-  <div class="mb"><div class="mb-block"><h4><i class="fas fa-book"></i>Présentation du programme</h4><p>Ce Master m'a permis d’approfondir mes connaissances en comptabilité, finance, fiscalité et analyse financière, tout en développant une vision globale du fonctionnement de l’entreprise. Cette formation renforce ma capacité à produire, interpréter et exploiter l’information financière afin d’accompagner la prise de décision, le pilotage de la performance et la création de valeur. Elle consolide ainsi mon profil de futur professionnel rigoureux, analytique et opérationnel, capable d’évoluer efficacement dans les métiers de la comptabilité, de la finance, de l’audit et du contrôle de gestion.</p></div><div class="mb-block"><h4><i class="fas fa-list-ul"></i>Matières principales</h4><ul><li>Analyse financière approfondie</li><li>Contrôle de gestion opérationnel et stratégique</li><li>Décision de financement et d'investissement</li><li>Droit fiscal</li><li>Finance de marché</li><li>Fusion et consolidation des entités</li><li>Gestion de la trésorerie</li><li>Ingénierie financière</li></ul></div><!--div class="mb-block"><h4><i class="fas fa-star"></i>Compétences</h4><div class="m-tags"><span>Comptabilité générale</span><span>Analyse financière</span><span>Fiscalité</span></div></div--></div>
-</div></div>
-  <!-- Modal UCAC Licence -->
-<div class="mo" id="me-ucac1"><div class="mc">
-  <div class="edu-mh"><div class="mh-stripe"></div><div class="edu-mlogo"><img src="images/logos-edu/ucac.png" alt="UCAC"></div><div><h2>Licence en Comptabilité et Finance d'Entreprises</h2><div class="edu-mschool">Université Catholique d'Afrique Centrale</div></div><button class="m-close"><i class="fas fa-times"></i></button></div>
-  <div class="mb"><div class="mb-block"><h4><i class="fas fa-book"></i>Présentation du programme</h4><p>Cette licence constitue une étapes fondamentale dans mon parcours, car elle m’a permis d’acquérir les bases essentielles en comptabilité, finance, fiscalité et gestion. Cette formation m’a donné les outils nécessaires pour comprendre le fonctionnement financier d’une entreprise, analyser les opérations comptables et interpréter les données financières avec rigueur. Elle a également renforcé mon sens de l’organisation, mon esprit d’analyse et ma capacité à appréhender les enjeux économiques de l’entreprise, posant ainsi des bases solides pour poursuivre vers des études plus spécialisées en comptabilité, finance, audit et contrôle de gestion.</p></div><div class="mb-block"><h4><i class="fas fa-list-ul"></i>Matières principales</h4><ul><li>Analyse financière</li><li>Audit interne et contrôle interne</li><li>Cadre comptable</li><li>Comptabilité approfondie</li><li>Comptabilité de gestion</li><li>Fiscalité des entreprises</li><li>Gestion de la trésorerie</li></ul></div><!--div class="mb-block"><h4><i class="fas fa-star"></i>Compétences</h4><div class="m-tags"><span>Comptabilité générale</span><span>Analyse financière</span><span>Fiscalité</span></div></div--></div>
-</div></div>
+<div class="mo" id="me-tbs">
+  <div class="mc">
+    <div class="edu-mh">
+      <div class="mh-stripe"></div>
+      <div class="edu-mlogo"><img src="images/logos-edu/tbs.png" alt="TBS"></div>
+      <div>
+        <h2>Mastère Spécialisé Expert en Audit Interne et Contrôle de Gestion</h2>
+        <div class="edu-mschool">TBS Education (Toulouse Business School)</div>
+        <div class="mh-meta">
+          <span><i class="fas fa-calendar"></i> oct. 2025 – nov. 2026</span>
+          <span><i class="fas fa-map-marker-alt"></i> Toulouse, France</span>
+        </div>
+      </div>
+      <button class="m-close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mb">
+      <div class="mb-block">
+        <h4><i class="fas fa-book"></i>Présentation du programme</h4>
+        <p>Le Mastère Spécialisé Expert en Audit Interne et Contrôle de Gestion de TBS Education représente une véritable 
+          valeur ajoutée dans mon parcours. Ce cursus m'a permis de développer une double compétence en audit interne et en contrôle de gestion, tout en 
+          renforçant ma capacité à analyser les risques, piloter la performance et assurer la conformité aux standards internationaux. À travers cette formation,
+           j’ai appris à transformer les données en outils d’aide à la décision et à apporter une contribution concrète à la création de valeur en entreprise, 
+           renforçant mon employabilité et me préparant à occuper des fonctions stratégiques dès le début de ma carrière.</p>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fas fa-list-ul"></i>Matières principales</h4>
+        <ul>
+          <li>Analyse de la performance économique, financière, sociale et environnementale</li>
+          <li>Audit de la fonction ressources humaines</li>
+          <li>Audit et contrôle de gestion du système commercial et marketing</li>
+          <li>Audit interne et management des risques dans le secteur bancaire</li>
+          <li>Audit, contrôle et pilotage de la fonction achat</li>
+          <li>Comptabilité de gestion : target costing, méthodes et calcul des coûts</li>
+          <li>Comptabilité financière dans le contexte des principes comptables français</li>
+          <li>Comptes consolidés et comptes combinés dans le contexte des principes comptables internationaux / Approfondissement aux normes IFRS</li>
+          <li>Contrôle de gestion des grands projets, de la RD et de l’innovation</li>
+          <li>Contrôle de gestion et audit interne face aux nouveaux enjeux sociaux et sociétaux : Economie Sociale et Solidaire (ESS), contrôle de gestion social</li>
+          <li>Contrôle de gestion industriel et contrôle du système de production</li>
+          <li>Contrôle du système financier de l'entreprise : contrôle des investissements et gestion de trésorerie</li>
+          <li>Gestion prévisionnelle : budgets et reporting dans différents contextes organisationnels</li>
+          <li>Mergers and Acquisitions (M&A)</li>
+          <li>Normes et méthodes de l’audit et du contrôle interne</li>
+          <li>Pilotage de la performance stratégique (financière et extra-financière) : business unit, prix de transfert, tableau de bord et Balanced Scorecard</li>
+        </ul>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fas fa-star"></i>Compétences</h4>
+        <div class="m-tags">
+          <span>Analyse financière</span>
+          <span>Contrôle de gestion et pilotage de la performance</span>
+          <span>Audit interne et contrôle interne</span>
+          <span>Management des risques</span>
+          <span>Comptabilité financière</span>
+          <span>Comptabilité de gestion</span>
+          <span>Normes comptables et consolidation</span>
+          <span>Pilotage stratégique</span>
+          <span>Audit interne</span>
+          <span>Gestion de la trésorerie et contrôle des investissements</span>
+          <span>Fusion-acquisition</span>
+          <span>Excel</span>
+          <span>VBA</span>
+          <span>Power BI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mo" id="me-edc">
+  <div class="mc">
+    <div class="edu-mh">
+      <div class="mh-stripe"></div>
+      <div class="edu-mlogo"><img src="images/logos-edu/edc.png" alt="EDC"></div>
+      <div>
+        <h2>Programme Grande École spécialisation Audit & Contrôle de Gestion</h2>
+        <div class="edu-mschool">EDC Paris Business School</div>
+        <div class="mh-meta">
+          <span><i class="fas fa-calendar"></i> Sept. 2024 – juil. 2025</span>
+          <span><i class="fas fa-map-marker-alt"></i> Puteaux, France</span>
+        </div>
+      </div>
+      <button class="m-close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mb">
+      <div class="mb-block">
+        <h4><i class="fas fa-book"></i>Présentation du programme</h4>
+        <p>Formation orientée finance, audit, contrôle de gestion et management stratégique.</p>
+      </div>
+    <div class="mb-block">
+        <h4><i class="fas fa-list-ul"></i>Matières principales</h4>
+        <ul>
+          <li>Comptabilité financière et de gestion</li>
+          <li>Audit et contrôle interne</li>
+          <li>Analyse financière et évaluation d’entreprise</li>
+          <li>Contrôle de gestion et pilotage de la performance</li>
+          <li>Finance d’entreprise et marchés financiers</li>
+          <li>Management stratégique et organisationnel</li>
+        </ul>
+    </div>
+    <div class="mb-block">
+        <h4><i class="fas fa-star"></i>Compétences</h4>
+        <div class="m-tags">
+          <span>Comptabilité financière et de gestion</span>
+          <span>Audit et contrôle interne</span>
+          <span>Analyse financière</span>
+          <span>Contrôle de gestion</span>
+          <span>Finance d’entreprise</span>
+          <span>Management stratégique</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mo" id="me-ucac2">
+  <div class="mc">
+    <div class="edu-mh">
+      <div class="mh-stripe"></div>
+      <div class="edu-mlogo"><img src="images/logos-edu/ucac.png" alt="UCAC"></div>
+      <div>
+        <h2>Master en Comptabilité et Finance d'Entreprises</h2>
+        <div class="edu-mschool">Université Catholique d'Afrique Centrale</div>
+                <div class="mh-meta">
+          <span><i class="fas fa-calendar"></i> nov. 2021 – juil. 2023</span>
+          <span><i class="fas fa-map-marker-alt"></i> Yaoundé, Cameroun</span>
+        </div>
+      </div>
+      <button class="m-close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mb">
+      <div class="mb-block">
+        <h4><i class="fas fa-book"></i>Présentation du programme</h4>
+        <p>Ce Master m'a permis d’approfondir mes connaissances en comptabilité, finance, fiscalité et
+           analyse financière, tout en développant une vision globale du fonctionnement de l’entreprise. 
+           Cette formation renforce ma capacité à produire, interpréter et exploiter l’information financière
+            afin d’accompagner la prise de décision, le pilotage de la performance et la création de valeur. 
+            Elle consolide ainsi mon profil de futur professionnel rigoureux, analytique et opérationnel, 
+            capable d’évoluer efficacement dans les métiers de la comptabilité, de la finance, de l’audit 
+            et du contrôle de gestion.</p>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fas fa-list-ul"></i>Matières principales</h4>
+        <ul>
+          <li>Analyse financière approfondie</li>
+          <li>Contrôle de gestion opérationnel et stratégique</li>
+          <li>Décision de financement et d'investissement</li>
+          <li>Droit fiscal</li>
+          <li>Finance de marché</li>
+          <li>Fusion et consolidation des entités</li>
+          <li>Gestion de la trésorerie</li>
+          <li>Ingénierie financière</li>
+        </ul>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fas fa-star"></i>Compétences</h4>
+        <div class="m-tags">
+          <span>Comptabilité financière et de gestion</span>
+          <span>Analyse financière</span>
+          <span>Finance d’entreprise</span>
+          <span>Fiscalité</span>
+          <span>Contrôle de gestion</span>
+          <span>Consolidation et fusion</span>
+          <span>Gestion de trésorerie</span>
+        </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="mo" id="me-ucac1">
+  <div class="mc">
+    <div class="edu-mh">
+      <div class="mh-stripe"></div>
+      <div class="edu-mlogo"><img src="images/logos-edu/ucac.png" alt="UCAC"></div>
+      <div>
+        <h2>Licence en Comptabilité et Finance d'Entreprises</h2>
+        <div class="edu-mschool">Université Catholique d'Afrique Centrale</div>
+        <div class="mh-meta">
+          <span><i class="fas fa-calendar"></i> Sept. 2016 – juil. 2021</span>
+          <span><i class="fas fa-map-marker-alt"></i> Yaoundé, Cameroun</span>
+        </div>
+      </div>
+      <button class="m-close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mb">
+      <div class="mb-block">
+        <h4><i class="fas fa-book"></i>Présentation du programme</h4>
+        <p>Cette licence constitue une étape fondamentale dans mon parcours, car elle m’a permis 
+          d’acquérir les bases essentielles en comptabilité, finance, fiscalité et gestion. Cette formation
+           m’a donné les outils nécessaires pour comprendre le fonctionnement financier d’une entreprise, 
+           analyser les opérations comptables et interpréter les données financières avec rigueur. Elle a 
+           également renforcé mon sens de l’organisation, mon esprit d’analyse et ma capacité à appréhender 
+           les enjeux économiques de l’entreprise, posant ainsi des bases solides pour poursuivre vers des 
+           études plus spécialisées en comptabilité, finance, audit et contrôle de gestion.</p>
+      </div>
+      <div class="mb-block">
+        <h4><i class="fas fa-list-ul"></i>Matières principales</h4>
+        <ul>
+          <li>Analyse financière</li>
+          <li>Audit interne et contrôle interne</li>
+          <li>Cadre comptable</li>
+          <li>Comptabilité approfondie</li>
+          <li>Comptabilité de gestion</li>
+          <li>Fiscalité des entreprises</li>
+          <li>Gestion de la trésorerie</li>
+        </ul>
+    </div>
+    <div class="mb-block">
+        <h4><i class="fas fa-star"></i>Compétences</h4>
+        <div class="m-tags">
+          <span>Comptabilité financière et de gestion</span>
+          <span>Finance d’entreprise</span>
+          <span>Fiscalité</span>
+          <span>Analyse financière</span>
+          <span>Gestion d’entreprise</span>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
 
 <script>
 'use strict';
-// Nav scroll
+
+/* NAV SCROLL */
 const nav = document.querySelector('.nav');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', scrollY > 40);
+}, { passive: true });
 
-// Theme toggle
-(function(){
-  const btn = document.getElementById('themeBtn');
-  const icon = document.getElementById('themeIcon');
-  const html = document.documentElement;
-  icon.className = html.dataset.theme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
-  btn.addEventListener('click', () => {
-    const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
-    html.dataset.theme = next;
-    icon.className = next === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
-    localStorage.setItem('theme', next);
-  });
-})();
 
-// Animated background canvas
+/* BACKGROUND CANVAS */
 (function(){
   const canvas = document.getElementById('bg-canvas');
   if(!canvas) return;
+
   const ctx = canvas.getContext('2d');
   let rafId;
-  function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-  function mkDot(){ return { x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*2+1, vx: (Math.random()-.5)*.8, vy: (Math.random()-.5)*.8 }; }
+
+  function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function mkDot(){
+    return {
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 2 + 1,
+      vx: (Math.random() - .5) * .8,
+      vy: (Math.random() - .5) * .8
+    };
+  }
+
   resize();
-  const N = Math.floor(canvas.width * canvas.height / 8000);
+
+  let N = Math.floor(canvas.width * canvas.height / 8000);
   const MAX_DIST = 120;
-  const dots = Array.from({length:N}, mkDot);
+  const dots = Array.from({ length: N }, mkDot);
+
   function draw(){
     const isDark = document.documentElement.dataset.theme === 'dark';
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     const MAX_DIST2 = MAX_DIST * MAX_DIST;
-    for(let i=0; i<dots.length; i++){
-      for(let j=i+1; j<dots.length; j++){
-        const dx=dots[i].x-dots[j].x, dy=dots[i].y-dots[j].y;
-        const d2=dx*dx+dy*dy;
-        if(d2<MAX_DIST2){
-          const d=Math.sqrt(d2);
-          const a=(1-d/MAX_DIST)*(isDark?.18:.10);
-          ctx.beginPath(); ctx.moveTo(dots[i].x,dots[i].y); ctx.lineTo(dots[j].x,dots[j].y);
-          ctx.strokeStyle=`rgba(59,130,246,${a})`; ctx.lineWidth=.8; ctx.stroke();
+
+    for(let i = 0; i < dots.length; i++){
+      for(let j = i + 1; j < dots.length; j++){
+        const dx = dots[i].x - dots[j].x;
+        const dy = dots[i].y - dots[j].y;
+        const d2 = dx * dx + dy * dy;
+
+        if(d2 < MAX_DIST2){
+          const d = Math.sqrt(d2);
+          const a = (1 - d / MAX_DIST) * (isDark ? .18 : .10);
+
+          ctx.beginPath();
+          ctx.moveTo(dots[i].x, dots[i].y);
+          ctx.lineTo(dots[j].x, dots[j].y);
+          ctx.strokeStyle = `rgba(59,130,246,${a})`;
+          ctx.lineWidth = .8;
+          ctx.stroke();
         }
       }
     }
-    dots.forEach(d=>{
-      ctx.beginPath(); ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
-      ctx.fillStyle=isDark?'rgba(59,130,246,0.5)':'rgba(59,130,246,0.25)';
+
+    dots.forEach(d => {
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+      ctx.fillStyle = isDark
+        ? 'rgba(59,130,246,0.5)'
+        : 'rgba(59,130,246,0.25)';
       ctx.fill();
-      d.x+=d.vx; d.y+=d.vy;
-      if(d.x<0||d.x>canvas.width) d.vx*=-1;
-      if(d.y<0||d.y>canvas.height) d.vy*=-1;
+
+      d.x += d.vx;
+      d.y += d.vy;
+
+      if(d.x < 0 || d.x > canvas.width) d.vx *= -1;
+      if(d.y < 0 || d.y > canvas.height) d.vy *= -1;
     });
-    rafId=requestAnimationFrame(draw);
+
+    rafId = requestAnimationFrame(draw);
   }
-  resize();
-  window.addEventListener('resize', ()=>{ cancelAnimationFrame(rafId); resize(); dots.length=0; Array.from({length:N},mkDot).forEach(d=>dots.push(d)); draw(); });
-  if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches) draw();
+
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(rafId);
+    resize();
+    N = Math.floor(canvas.width * canvas.height / 8000);
+    dots.length = 0;
+    Array.from({ length: N }, mkDot).forEach(d => dots.push(d));
+    draw();
+  });
+
+  if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
+    draw();
+  }
 })();
 
-// Stats counter
-const ease = t => 1 - Math.pow(1-t, 3);
-const io1 = new IntersectionObserver((ents, obs) => ents.forEach(e => {
-  if(!e.isIntersecting) return;
-  const el=e.target, t=+el.dataset.t, d=1600, s=performance.now();
-  const tick=n=>{ const p=Math.min((n-s)/d,1); el.textContent=Math.round(ease(p)*t); if(p<1)requestAnimationFrame(tick); };
-  requestAnimationFrame(tick); obs.unobserve(el);
-}), {threshold:.5});
+/* COUNTERS */
+const ease = t => 1 - Math.pow(1 - t, 3);
+
+const io1 = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if(!entry.isIntersecting) return;
+
+    const el = entry.target;
+    const target = +el.dataset.t;
+    const duration = 1600;
+    const start = performance.now();
+
+    const tick = now => {
+      const progress = Math.min((now - start) / duration, 1);
+      el.textContent = Math.round(ease(progress) * target);
+
+      if(progress < 1) requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(tick);
+    obs.unobserve(el);
+  });
+}, { threshold: .5 });
+
 document.querySelectorAll('[data-t]').forEach(el => io1.observe(el));
 
-// Skills bento reveal
-const io2 = new IntersectionObserver((ents,obs)=>ents.forEach(e=>{
-  if(!e.isIntersecting)return;
-  setTimeout(()=>e.target.classList.add('visible'),+e.target.dataset.d||0);
-  obs.unobserve(e.target);
-}),{threshold:.1});
-document.querySelectorAll('.bc').forEach(el=>io2.observe(el));
-
-// Reveal animations
+/* REVEAL ANIMATIONS */
 if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
-  const obs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); obs.unobserve(e.target); } });
-  },{rootMargin:'0px 0px -60px 0px', threshold:.08});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -60px 0px', threshold: .08 });
+
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 } else {
-  document.querySelectorAll('.reveal').forEach(el=>el.classList.add('show'));
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('show'));
 }
 
-// Timeline items reveal
-const io3 = new IntersectionObserver((ents,obs)=>ents.forEach((e,i)=>{
-  if(!e.isIntersecting)return;
-  setTimeout(()=>e.target.classList.add('visible'),i*110);
-  obs.unobserve(e.target);
-}),{threshold:.1,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.tl-item').forEach(el=>io3.observe(el));
+/* TIMELINE REVEAL */
+const io3 = new IntersectionObserver((entries, obs) => {
+  entries.forEach((entry, index) => {
+    if(!entry.isIntersecting) return;
 
-// Modal manager
-const MM = {
-  active: null, last: null,
-  open(id, t){ const o=document.getElementById(id); if(!o)return; this.active=o; this.last=t||document.activeElement; o.classList.add('active'); document.body.classList.add('locked'); const f=o.querySelectorAll('a,button,[tabindex]'); if(f.length)requestAnimationFrame(()=>f[0].focus({preventScroll:true})); },
-  close(o){ if(!o||!o.classList.contains('active'))return; o.classList.remove('active'); if(!document.querySelector('.mo.active'))document.body.classList.remove('locked'); this.last?.focus?.({preventScroll:true}); this.active=null; },
-  closeAll(){ document.querySelectorAll('.mo.active').forEach(o=>this.close(o)); }
-};
-document.addEventListener('click', e=>{
-  const exp = e.target.closest('[data-exp-modal]');
-  const edu = e.target.closest('.modal-trigger[data-modal]');
-  const prj = e.target.closest('.proj-card[data-pm], .pc-arr');
-  if(exp){ MM.open(exp.dataset.expModal, exp); return; }
-  if(edu){ MM.open(edu.dataset.modal, edu); return; }
-  if(prj){ const card=e.target.closest('.proj-card'); if(card&&card.dataset.pm)MM.open(card.dataset.pm,card); return; }
-  const cl = e.target.closest('.m-close');
-  if(cl){ MM.close(cl.closest('.mo')); return; }
-  if(e.target.classList.contains('mo')) MM.close(e.target);
-});
-document.addEventListener('keydown', e=>{ if(e.key==='Escape')MM.closeAll(); });
-
-// Project filter
-document.querySelectorAll('.fbtn').forEach(btn=>btn.addEventListener('click',()=>{
-  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  const f=btn.dataset.f;
-  document.querySelectorAll('.proj-card').forEach(c=>{
-    const show=f==='all'||c.dataset.cat===f;
-    c.classList.toggle('hidden',!show);
+    setTimeout(() => entry.target.classList.add('visible'), index * 110);
+    obs.unobserve(entry.target);
   });
-}));
+}, { threshold: .1, rootMargin: '0px 0px -30px 0px' });
 
-// Back to top
-const btt = document.querySelector('.btt');
-window.addEventListener('scroll',()=>btt.classList.toggle('visible',scrollY>400),{passive:true});
+document.querySelectorAll('.tl-item').forEach(el => io3.observe(el));
 
-// Scroll spy for dock
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.dock a[data-spy]');
-window.addEventListener('scroll', ()=>{
-  let current='';
-  sections.forEach(s=>{ if(scrollY>=s.offsetTop-200)current=s.id; });
-  navLinks.forEach(link=>{ link.classList.toggle('active',link.dataset.spy===current); });
-},{passive:true});
+/* SKILLS REVEAL */
+const io2 = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if(!entry.isIntersecting) return;
 
-// Slider controls
-const slider = document.getElementById('projectsSlider');
-const nextBtn = document.getElementById('nextBtn');
-const prevBtn = document.getElementById('prevBtn');
+    setTimeout(() => entry.target.classList.add('visible'), +entry.target.dataset.d || 0);
+    obs.unobserve(entry.target);
+  });
+}, { threshold: .1 });
 
-if (slider && nextBtn && prevBtn) {
-  const pages = slider.querySelectorAll('.slide-page');
-  if (pages.length <= 1) {
-    nextBtn.classList.add('hidden');
-    prevBtn.classList.add('hidden');
+document.querySelectorAll('.bc').forEach(el => io2.observe(el));
+
+/* MODAL MANAGER */
+const MM = {
+  active: null,
+  last: null,
+
+  open(id, trigger){
+    const modal = document.getElementById(id);
+    if(!modal) return;
+
+    this.active = modal;
+    this.last = trigger || document.activeElement;
+
+    modal.classList.add('active');
+    document.body.classList.add('locked');
+
+    const focusables = modal.querySelectorAll('a,button,[tabindex]');
+    if(focusables.length) {
+      requestAnimationFrame(() => focusables[0].focus({ preventScroll: true }));
+    }
+  },
+
+  close(modal){
+    if(!modal || !modal.classList.contains('active')) return;
+
+    modal.classList.remove('active');
+
+    if(!document.querySelector('.mo.active')) {
+      document.body.classList.remove('locked');
+    }
+
+    this.last?.focus?.({ preventScroll: true });
+    this.active = null;
+  },
+
+  closeAll(){
+    document.querySelectorAll('.mo.active').forEach(modal => this.close(modal));
+  }
+};
+
+document.addEventListener('click', event => {
+  const exp = event.target.closest('[data-exp-modal]');
+  const edu = event.target.closest('.modal-trigger[data-modal]');
+  const prj = event.target.closest('.proj-card[data-pm], .pc-arr');
+
+  if(exp){
+    MM.open(exp.dataset.expModal, exp);
+    return;
   }
 
+  if(edu){
+    MM.open(edu.dataset.modal, edu);
+    return;
+  }
+
+  if(prj){
+    const card = event.target.closest('.proj-card');
+    if(card && card.dataset.pm) {
+      MM.open(card.dataset.pm, card);
+    }
+    return;
+  }
+
+  const close = event.target.closest('.m-close');
+
+  if(close){
+    MM.close(close.closest('.mo'));
+    return;
+  }
+
+  if(event.target.classList.contains('mo')) {
+    MM.close(event.target);
+  }
+});
+
+document.addEventListener('keydown', event => {
+  if(event.key === 'Escape') {
+    MM.closeAll();
+  }
+});
+
+/* PROJECTS DYNAMIC SLIDER + FILTERS */
+(function(){
+  const projects = [
+    {
+      cat: 'rep',
+      modal: 'mp-rep',
+      iconClass: 'rep',
+      icon: 'fas fa-chart-bar',
+      badge: 'Reporting',
+      title: 'Tableau de bord Power BI',
+      desc: "Analyse des écarts budgétaires et reporting automatisé pour un service commercial — suivi mensuel des KPIs.",
+      result: '−35% de temps de reporting',
+      tags: ['Power BI', 'DAX', 'Excel']
+    },
+    {
+      cat: 'aud',
+      modal: 'mp-aud',
+      iconClass: 'aud',
+      icon: 'fas fa-shield-halved',
+      badge: 'Audit',
+      title: 'Audit processus achats',
+      desc: "Cartographie des risques et recommandations pour améliorer le contrôle interne sur le cycle achats-fournisseurs.",
+      result: '12 recommandations formulées',
+      tags: ['Audit interne', 'Risques', 'COSO']
+    },
+    {
+      cat: 'auto',
+      modal: 'mp-retraitement',
+      iconClass: 'auto',
+      icon: 'fas fa-building-columns',
+      badge: 'Automatisation',
+      title: 'Retraitement de fichier texte',
+      desc: "Automatiser la récupération et le retraitement de fichiers texte pour améliorer leur qualité et faciliter leur exploitation.",
+      result: 'Données fiabilisées',
+      tags: ['Excel', 'VBA']
+    },
+    {
+      cat: 'ctrl',
+      modal: 'mp-ctrl',
+      iconClass: 'ctrl',
+      icon: 'fas fa-gears',
+      badge: 'Contrôle',
+      title: 'Automatisation Excel VBA',
+      desc: "Macro pour le traitement automatisé des données comptables et génération de rapports mensuels standardisés.",
+      result: '8h économisées/mois',
+      tags: ['Excel VBA', 'Power Query']
+    }
+  ];
+
+  const slider = document.getElementById('projectsSlider');
+  const pagination = document.getElementById('projectsPagination');
+  const emptyMessage = document.getElementById('projectsEmpty');
+  const nextBtn = document.getElementById('nextBtn');
+  const prevBtn = document.getElementById('prevBtn');
+  const filterButtons = document.querySelectorAll('.fbtn');
+
+  if(!slider || !pagination || !nextBtn || !prevBtn) return;
+
+  let currentFilter = 'all';
+  let currentPage = 0;
+  let filteredProjects = [...projects];
+
+  function getItemsPerPage(){
+    if(window.innerWidth <= 640) return 1;
+    if(window.innerWidth <= 1024) return 2;
+    return 3;
+  }
+
+  function getTotalPages(){
+    return Math.ceil(filteredProjects.length / getItemsPerPage());
+  }
+
+  function createProjectCard(project){
+    const tags = project.tags.map(tag => `<span>${tag}</span>`).join('');
+
+    return `
+      <div class="proj-card" data-cat="${project.cat}" data-pm="${project.modal}">
+        <div class="pc-top">
+          <div class="pc-ico ${project.iconClass}">
+            <i class="${project.icon}"></i>
+          </div>
+          <span class="pc-badge ${project.cat}">${project.badge}</span>
+        </div>
+
+        <div class="pc-title">${project.title}</div>
+        <div class="pc-desc">${project.desc}</div>
+
+        <div class="pc-result">
+          <i class="fas fa-check-circle"></i>
+          ${project.result}
+        </div>
+
+        <div class="pc-foot">
+          <div class="pc-tags">${tags}</div>
+          <button class="pc-arr" type="button" aria-label="Voir le projet ${project.title}">
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderProjects(){
+    slider.innerHTML = '';
+
+    if(filteredProjects.length === 0){
+      emptyMessage.classList.remove('hidden');
+      slider.classList.add('hidden');
+      pagination.innerHTML = '';
+      prevBtn.classList.add('hidden');
+      nextBtn.classList.add('hidden');
+      return;
+    }
+
+    emptyMessage.classList.add('hidden');
+    slider.classList.remove('hidden');
+
+    const itemsPerPage = getItemsPerPage();
+
+    for(let i = 0; i < filteredProjects.length; i += itemsPerPage){
+      const pageProjects = filteredProjects.slice(i, i + itemsPerPage);
+      const page = document.createElement('div');
+
+      page.className = 'slide-page';
+      page.innerHTML = pageProjects.map(createProjectCard).join('');
+
+      slider.appendChild(page);
+    }
+  }
+
+  function renderPagination(){
+    pagination.innerHTML = '';
+
+    const totalPages = getTotalPages();
+
+    if(totalPages <= 1){
+      pagination.classList.add('hidden');
+      return;
+    }
+
+    pagination.classList.remove('hidden');
+
+    for(let i = 0; i < totalPages; i++){
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'projects-dot';
+      dot.setAttribute('aria-label', `Aller à la page ${i + 1}`);
+
+      if(i === currentPage) {
+        dot.classList.add('active');
+      }
+
+      dot.addEventListener('click', () => {
+        currentPage = i;
+        updateSlider();
+        renderPagination();
+        updateButtons();
+      });
+
+      pagination.appendChild(dot);
+    }
+  }
+
+  function updateSlider(){
+    slider.scrollTo({
+      left: currentPage * slider.clientWidth,
+      behavior: 'smooth'
+    });
+  }
+
+  function updateButtons(){
+    const totalPages = getTotalPages();
+
+    if(totalPages <= 1){
+      prevBtn.classList.add('hidden');
+      nextBtn.classList.add('hidden');
+      return;
+    }
+
+    prevBtn.classList.remove('hidden');
+    nextBtn.classList.remove('hidden');
+
+    prevBtn.disabled = currentPage === 0;
+    nextBtn.disabled = currentPage >= totalPages - 1;
+  }
+
+  function applyFilter(filter){
+    currentFilter = filter;
+
+    filteredProjects = filter === 'all'
+      ? [...projects]
+      : projects.filter(project => project.cat === filter);
+
+    currentPage = 0;
+
+    renderProjects();
+    renderPagination();
+    updateButtons();
+
+    requestAnimationFrame(() => {
+      slider.scrollTo({
+        left: 0,
+        behavior: 'auto'
+      });
+    });
+  }
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilter(btn.dataset.f);
+    });
+  });
+
   nextBtn.addEventListener('click', () => {
-    slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' });
+    const totalPages = getTotalPages();
+
+    if(currentPage < totalPages - 1){
+      currentPage++;
+      updateSlider();
+      renderPagination();
+      updateButtons();
+    }
   });
 
   prevBtn.addEventListener('click', () => {
-    slider.scrollBy({ left: -slider.clientWidth, behavior: 'smooth' });
+    if(currentPage > 0){
+      currentPage--;
+      updateSlider();
+      renderPagination();
+      updateButtons();
+    }
   });
-}
+
+  window.addEventListener('resize', () => {
+    const totalPages = getTotalPages();
+
+    if(currentPage > totalPages - 1){
+      currentPage = Math.max(totalPages - 1, 0);
+    }
+
+    renderProjects();
+    renderPagination();
+    updateButtons();
+
+    requestAnimationFrame(() => {
+      slider.scrollTo({
+        left: currentPage * slider.clientWidth,
+        behavior: 'auto'
+      });
+    });
+  });
+
+  applyFilter(currentFilter);
+})();
+
+/* BACK TO TOP */
+const btt = document.querySelector('.btt');
+
+window.addEventListener('scroll', () => {
+  btt.classList.toggle('visible', scrollY > 400);
+}, { passive: true });
+
+/* SCROLL SPY DOCK */
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.dock a[data-spy]');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+
+  sections.forEach(section => {
+    if(scrollY >= section.offsetTop - 200) {
+      current = section.id;
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.dataset.spy === current);
+  });
+}, { passive: true });
 </script>
+
 </body>
 </html>
