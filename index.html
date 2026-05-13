@@ -2594,6 +2594,13 @@
         <h4><i class="fas fa-wrench"></i>Outils</h4>
         <div class="m-tags"><span>Excel</span><span>Power BI</span><span>Power Query</span></div>
       </div>
+            <div class="mb-block">
+        <h4><i class="fa-solid fa-folder-open"></i>Documentation et médias</h4>
+        <ul>
+          <li><i class="fas fa-file"></i> <a href="https://1drv.ms/x/c/ff3f4235c3d8dddd/IQBq7XfDO4QiS709nkJ8jHVAAU2P8_c20bsMgIQXqzYnJ9A?e=znXV4i" target="_blank">Audit Matériaux durables du JURA SAS</a></li>
+          <li><i class="fas fa-file"></i> <a href="https://1drv.ms/x/c/ff3f4235c3d8dddd/IQDCjANSose8RoKmyTon-bvpAULbfnhIDEFnEjgR0nynjb0?e=OsZE8l" target="_blank">Audit Concession Auto</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
@@ -2624,16 +2631,16 @@
         </ul>
       </div>
       <div class="mb-block">
+        <h4><i class="fas fa-wrench"></i>Outils</h4>
+        <div class="m-tags"><span>Excel</span></div>
+      </div>
+      <div class="mb-block">
         <h4><i class="fa-solid fa-folder-open"></i>Documentation et médias</h4>
         <ul>
           <li><i class="fas fa-file"></i> <a href="docs/projets/Kitchen Plus vTVA 26.pdf" target="_blank">Présentation de l'étude de cas : Kitchen Plus</a></li>
           <li><i class="fas fa-file"></i> <a href="https://1drv.ms/x/c/ff3f4235c3d8dddd/IQBnUrl3FsYHQam1P33cOmDLARvuYa4-DzRJlaqTVmWF6ew?e=jpIblk" target="_blank">Kitchen Plus hypothèse standard</a></li>
           <li><i class="fas fa-file"></i> <a href="https://1drv.ms/x/c/ff3f4235c3d8dddd/IQCSJJmIO_WNTIBmmRXQAlCDAfEmTsjfMr2jhKTn4F4bbnY?e=3Qtlqy" target="_blank">Kitchen Plus recommandations</a></li>
         </ul>
-      </div>
-      <div class="mb-block">
-        <h4><i class="fas fa-wrench"></i>Outils</h4>
-        <div class="m-tags"><span>Excel</span></div>
       </div>
     </div>
   </div>
@@ -2666,6 +2673,13 @@
       <div class="mb-block">
         <h4><i class="fas fa-wrench"></i>Outils</h4>
         <div class="m-tags"><span>Excel</span><span>VBA</span></div>
+      </div>
+            <div class="mb-block">
+        <h4><i class="fa-solid fa-folder-open"></i>Documentation et médias</h4>
+          <video width="80%" controls>
+          <source src="tutos_vid/retraitement_fichier_texte.mp4" type="video/mp4">
+          Votre navigateur ne supporte pas la lecture vidéo.
+        </video>
       </div>
     </div>
   </div>
@@ -3418,6 +3432,16 @@ window.addEventListener('scroll', () => {
     link.classList.toggle('active', link.dataset.spy === current);
   });
 }, { passive: true });
+
+  const videoModal = document.getElementById('videoModal');
+
+  videoModal.addEventListener('hidden.bs.modal', function () {
+    const video = videoModal.querySelector('video');
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+    }
+  });
 </script>
 
 </body>
